@@ -30,6 +30,16 @@ pub const PAGES: &[Page] = &[
         title: "Find Us",
         nav: Some("Find Us"),
     },
+    Page {
+        slug: "history",
+        title: "History",
+        nav: Some("History"),
+    },
+    Page {
+        slug: "faq",
+        title: "FAQ",
+        nav: Some("FAQ"),
+    },
 ];
 
 pub fn url(slug: &str) -> String {

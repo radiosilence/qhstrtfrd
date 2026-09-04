@@ -794,3 +794,262 @@
     font-weight: 600;
   }
 }
+
+@layer components {
+  /* --- FAQ ------------------------------------------------------------- */
+  /* <details> does the whole job: open/close, keyboard, find-in-page on
+     modern browsers. No script, and the answer is in the DOM for crawlers
+     whether or not it is open. */
+
+  .faq-list {
+    border-top: 1px solid var(--color-hairline);
+  }
+
+  .faq {
+    border-bottom: 1px solid var(--color-hairline);
+  }
+
+  .faq-q {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+    line-height: 1.25;
+    padding-block: 1.5rem;
+    padding-right: 3rem;
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    transition: color 0.2s;
+  }
+
+  .faq-q::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-q:hover {
+    color: var(--color-brass-lit);
+  }
+
+  /* A brass plus that becomes a minus. Drawn with two bars so the rotation
+     is the whole animation. */
+  .faq-q::after,
+  .faq-q::before {
+    content: "";
+    position: absolute;
+    right: 0.25rem;
+    top: 50%;
+    width: 1rem;
+    height: 2px;
+    background: var(--color-brass);
+    transition: transform 0.3s ease;
+  }
+
+  .faq-q::before {
+    transform: translateY(-50%);
+  }
+
+  .faq-q::after {
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  .faq[open] .faq-q::after {
+    transform: translateY(-50%) rotate(0deg);
+  }
+
+  .faq[open] .faq-q {
+    color: var(--color-brass-lit);
+  }
+
+  .faq-a {
+    padding-bottom: 1.6rem;
+    max-width: 52ch;
+  }
+
+  .faq-a p {
+    color: color-mix(in srgb, var(--color-cream) 76%, transparent);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+  }
+
+  /* --- Duotone --------------------------------------------------------- */
+  /* The three photographs are stock and read as stock. Pushing them through a
+     claret/brass duotone makes them a set rather than three borrowed images,
+     and it costs one SVG filter and no extra bytes over the wire.
+
+     The filter itself lives in `ornament.html`; these classes apply it. */
+
+  .duo {
+    filter: url(#duotone-claret);
+  }
+
+  .duo-soft {
+    filter: url(#duotone-claret);
+    opacity: 0.85;
+  }
+
+  /* A photograph that fades into the page rather than ending at an edge. */
+  .fade-bottom {
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  }
+
+  /* --- Ornament -------------------------------------------------------- */
+
+  .ornament {
+    display: block;
+    margin-inline: auto;
+    color: var(--color-brass);
+    opacity: 0.8;
+  }
+
+  /* The engraved brass panel behind a pull-quote or a statement. */
+  .panel {
+    position: relative;
+    padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.75rem, 5vw, 4rem);
+    background:
+      repeating-linear-gradient(
+        135deg,
+        transparent 0 6px,
+        rgb(201 162 74 / 0.035) 6px 7px
+      ),
+      linear-gradient(160deg, var(--color-ink-3), var(--color-ink) 75%);
+    border: 1px solid color-mix(in srgb, var(--color-brass) 30%, transparent);
+  }
+
+  /* Brass corner ticks on all four corners — a frame that isn't a box. */
+  .panel::before,
+  .panel::after {
+    content: "";
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid var(--color-brass);
+    opacity: 0.8;
+  }
+
+  .panel::before {
+    top: 0.75rem;
+    left: 0.75rem;
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  .panel::after {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    border-left: 0;
+    border-top: 0;
+  }
+
+  .pull {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.6vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    text-align: center;
+    font-variation-settings: "SOFT" 22, "WONK" 1;
+  }
+
+  .pull-cite {
+    display: block;
+    margin-top: 1.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-brass);
+  }
+
+  /* --- Numbers --------------------------------------------------------- */
+  /* Facts with figures, which is what a lot of this site now is. */
+
+  .figures {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(2, 1fr);
+    background: var(--color-hairline);
+    border: 1px solid var(--color-hairline);
+  }
+
+  @media (min-width: 52rem) {
+    .figures {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .figure-cell {
+    background: var(--color-ink);
+    padding: 1.75rem 1.25rem;
+    text-align: center;
+  }
+
+  .figure-num {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1;
+    color: var(--color-brass-lit);
+    font-variation-settings: "SOFT" 20, "WONK" 1;
+  }
+
+  .figure-label {
+    margin-top: 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  /* --- Timeline -------------------------------------------------------- */
+
+  .timeline {
+    border-left: 1px solid var(--color-hairline);
+    padding-left: clamp(1.5rem, 4vw, 3rem);
+    margin-left: 0.5rem;
+  }
+
+  .moment {
+    position: relative;
+    padding-bottom: 2.75rem;
+  }
+
+  .moment::before {
+    content: "";
+    position: absolute;
+    left: calc(-1 * clamp(1.5rem, 4vw, 3rem) - 5px);
+    top: 0.55rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 100px;
+    background: var(--color-brass);
+    box-shadow: 0 0 0 4px var(--color-ink);
+  }
+
+  .moment-year {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-brass-lit);
+    line-height: 1;
+  }
+
+  .moment-body {
+    margin-top: 0.6rem;
+    color: color-mix(in srgb, var(--color-cream) 76%, transparent);
+    max-width: 56ch;
+    line-height: 1.7;
+  }
+
+  /* A moment we can only date approximately. Said in the markup, not implied. */
+  .moment-approx .moment-year {
+    color: var(--color-muted);
+  }
+}
+
+@layer components {
+  .pub-sign {
+    width: clamp(11rem, 22vw, 16rem);
+    height: auto;
+    filter: drop-shadow(0 14px 30px rgb(0 0 0 / 0.55));
+  }
+}

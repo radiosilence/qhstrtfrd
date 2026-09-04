@@ -37,9 +37,7 @@
 <section class="shell band">
   <p class="eyebrow">What's on</p>
   <h1 class="display" style="font-size: var(--text-title)">Something on,<br />most nights</h1>
-  <p class="lede" style="max-width: 42rem; margin-top: 1.75rem">
-    No cover charge, no guest list, no tickets to lose. Turn up, get a drink, find a seat if you're early enough.
-  </p>
+  <p class="lede" style="max-width: 42rem; margin-top: 1.75rem">{{ site.whatson.lede }}</p>
 </section>
 
 <hr class="rule" />
@@ -50,7 +48,7 @@
   <div class="grid-3" style="margin-top: 3rem">
     {%- for r in site.regulars %}
     <article class="card">
-      <p class="card-meta">{{ r.when }} &middot; {{ r.time }}</p>
+      <p class="card-meta">{{ r.when }}</p>
       <h3 class="card-title">{{ r.name }}</h3>
       <p>{{ r.blurb }}</p>
     </article>
@@ -94,12 +92,8 @@
     </div>
     <div>
       <p class="eyebrow">Put something on</p>
-      <h2 class="title">Birthdays, wakes, send-offs</h2>
-      <p class="prose-warm" style="margin-top: 1.5rem">
-        <span>The back room takes a crowd and we've hosted a lot of them — birthdays, christenings,
-        leaving dos, and more than one send-off done properly. No hire fee, no minimum spend, no
-        forms. Ring the bar, tell us the day, and we'll sort the rest between us.</span>
-      </p>
+      <h2 class="title">{{ site.functions.heading }}</h2>
+      <p class="prose-warm" style="margin-top: 1.5rem"><span>{{ site.functions.body }}</span></p>
       <p style="margin-top: 2rem">
         <a class="btn btn-solid" href="tel:{{ site.venue.phone_link }}">{{ site.venue.phone_display }}</a>
       </p>

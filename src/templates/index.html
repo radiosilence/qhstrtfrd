@@ -39,7 +39,7 @@
   <div class="hero-wash"></div>
 
   <div class="shell hero-inner">
-    <p class="eyebrow">Stratford &middot; East London &middot; Est. on West Ham Lane</p>
+    <p class="eyebrow">Stratford &middot; East London &middot; West Ham Lane</p>
     <h1 class="display">The Queen's<br />Head</h1>
     <p class="lede" style="max-width: 36rem; margin-top: 1.75rem">{{ v.tagline }}</p>
 
@@ -67,7 +67,7 @@
       </div>
     </div>
     <div class="figure figure-framed">
-      <img src="{{ pour }}" srcset="{{ pour_small }} 500w, {{ pour }} 1000w"
+      <img class="duo" src="{{ pour }}" srcset="{{ pour_small }} 500w, {{ pour }} 1000w"
            sizes="(min-width: 56rem) 36rem, 92vw"
            alt="A pint being poured behind the bar at the Queen's Head"
            width="1000" height="1000" loading="lazy" />
@@ -84,10 +84,32 @@
       <p class="lede" style="margin-top: 1.5rem">{{ site.matchday.lede }}</p>
       <p class="prose-warm" style="margin-top: 1.25rem"><span>{{ site.matchday.body }}</span></p>
       <p class="chips" style="margin-top: 2rem">
-        <span class="chip">{{ site.matchday.walk }}</span>
-        <span class="chip">Doors 11am</span>
-        <span class="chip">Sky &amp; TNT</span>
+        <span class="chip">{{ site.matchday.walk_label }}</span>
+        <span class="chip">Doors 11am, every day</span>
+        <span class="chip">Six HD screens</span>
       </p>
+      <p style="margin-top: 1.25rem; color: var(--color-muted); font-size: 0.9rem">{{ site.matchday.walk_detail }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="shell band-tight">
+  <div class="figures">
+    <div class="figure-cell">
+      <p class="figure-num">6</p>
+      <p class="figure-label">HD screens</p>
+    </div>
+    <div class="figure-cell">
+      <p class="figure-num">11am</p>
+      <p class="figure-label">Open, every day</p>
+    </div>
+    <div class="figure-cell">
+      <p class="figure-num">575m</p>
+      <p class="figure-label">To Stratford station</p>
+    </div>
+    <div class="figure-cell">
+      <p class="figure-num">1.7km</p>
+      <p class="figure-label">To the London Stadium</p>
     </div>
   </div>
 </section>
@@ -118,7 +140,7 @@
   <div class="grid-3" style="margin-top: 3rem">
     {%- for r in site.regulars %}
     <article class="card">
-      <p class="card-meta">{{ r.when }} &middot; {{ r.time }}</p>
+      <p class="card-meta">{{ r.when }}</p>
       <h3 class="card-title">{{ r.name }}</h3>
       <p>{{ r.blurb }}</p>
     </article>

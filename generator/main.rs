@@ -12,7 +12,7 @@ use time::{Date, OffsetDateTime, UtcOffset};
 use queenshead::assets::Assets;
 use queenshead::content::Site;
 use queenshead::routes::{PAGES, url};
-use queenshead::templates::{Context, FindUs, Index, Meta, NavItem, Sport, WhatsOn};
+use queenshead::templates::{Context, Faq, FindUs, History, Index, Meta, NavItem, Sport, WhatsOn};
 
 fn main() -> Result<()> {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).to_owned();
@@ -95,6 +95,20 @@ fn main() -> Result<()> {
                 nav: &nav,
             }
             .render()?,
+            "history" => History {
+                ctx: &ctx,
+                site: &site,
+                meta,
+                nav: &nav,
+            }
+            .render()?,
+            "faq" => Faq {
+                ctx: &ctx,
+                site: &site,
+                meta,
+                nav: &nav,
+            }
+            .render()?,
             other => anyhow::bail!("no template for slug `{other}`"),
         };
 
@@ -158,6 +172,24 @@ fn meta_for(site: &Site, slug: &str, path: &str, assets: &Assets) -> Meta {
                 v.name
             ),
             "A full room watching the football at the Queen's Head, Stratford".to_owned(),
+        ),
+        "history" => (
+            format!("History — {} , West Ham Lane, {}", v.name, v.locality),
+            "Older than the skyline".to_owned(),
+            format!(
+                "Photographed on West Ham Lane in 1985, briefly traded as Le Pub, refitted in 2023. What can actually be shown about the history of {}, Stratford E15.",
+                v.name
+            ),
+            "The bar at the Queen's Head, Stratford".to_owned(),
+        ),
+        "faq" => (
+            format!("FAQ — {} , {} {}", v.name, v.locality, v.postcode),
+            "Straight answers".to_owned(),
+            format!(
+                "Do they show West Ham? Is it dog friendly? Is there food? Straight answers about {}, {} {} — including the ones where the answer is no.",
+                v.name, v.locality, v.postcode
+            ),
+            "Pump clips along the bar at the Queen's Head".to_owned(),
         ),
         "find-us" => (
             format!("Find Us — {} , {} {}", v.name, v.locality, v.postcode),

@@ -1,0 +1,72 @@
+{% extends "page-base.html" %}
+
+{%- block schema %}
+{%- let v = site.venue %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "{{ v.origin }}/faq#faq",
+  "about": { "@id": "{{ v.origin }}/#pub" },
+  "mainEntity": [
+    {%- for item in site.faq %}
+    {
+      "@type": "Question",
+      "name": "{{ item.q }}",
+      "acceptedAnswer": { "@type": "Answer", "text": "{{ item.a }}" }
+    }{% if !loop.last %},{% endif %}
+    {%- endfor %}
+  ]
+}
+</script>
+{%- endblock %}
+
+{% block content %}
+{%- let v = site.venue %}
+{%- let taps = asset("img/taps.jpg") %}
+
+<section class="shell band">
+  <p class="eyebrow">Straight answers</p>
+  <h1 class="display" style="font-size: var(--text-title)">Things people<br />ring up and ask</h1>
+  <p class="lede" style="max-width: 42rem; margin-top: 1.75rem">
+    Answered plainly, including the ones where the answer is no. If it is not here,
+    the phone is behind the bar.
+  </p>
+</section>
+
+<hr class="rule" />
+
+<section class="shell band">
+  <div class="faq-list">
+    {%- for item in site.faq %}
+    <details class="faq"{% if loop.first %} open{% endif %}>
+      <summary class="faq-q">{{ item.q }}</summary>
+      <div class="faq-a"><p>{{ item.a }}</p></div>
+    </details>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="band-claret band">
+  <div class="shell">
+    <div class="grid-2">
+      <div>
+        <p class="eyebrow">Still stuck</p>
+        <h2 class="title">Ring the bar</h2>
+        <p class="prose-warm" style="margin-top: 1.5rem">
+          <span>Somebody will pick it up, and they will know the answer better than any
+          website does. Opening hours, whether the game is on, whether there is room
+          for twelve of you on Saturday — that is a thirty-second phone call.</span>
+        </p>
+        <p style="margin-top: 2rem">
+          <a class="btn btn-solid" href="tel:{{ v.phone_link }}">{{ v.phone_display }}</a>
+        </p>
+      </div>
+      <div class="figure figure-framed">
+        <img src="{{ taps }}" alt="Pump clips along the bar at the Queen's Head"
+             width="900" height="450" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

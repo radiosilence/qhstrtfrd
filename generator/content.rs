@@ -20,11 +20,23 @@ pub struct Site {
     pub hours: Vec<Hours>,
     pub bar: Bar,
     pub sport: Sport,
+    pub whatson: WhatsOnIntro,
     pub regulars: Vec<Regular>,
+    /// Absent means none. A pub with nothing booked is a real state, and the
+    /// page says so rather than inventing a gig to fill the space.
+    #[serde(default)]
     pub events: Vec<Event>,
+    pub functions: Functions,
     pub facilities: Vec<Facility>,
     pub travel: Travel,
     pub access: Access,
+    pub history: History,
+    pub faq: Vec<Faq>,
+    /// Never rendered. It exists so that provenance lives beside the claims
+    /// rather than in a comment nobody updates, and so that `deny_unknown_fields`
+    /// does not reject the block that records where all this came from.
+    #[allow(dead_code)]
+    pub sources: Vec<Source>,
 }
 
 #[derive(Deserialize)]
@@ -87,7 +99,8 @@ pub struct Matchday {
     pub heading: String,
     pub lede: String,
     pub body: String,
-    pub walk: String,
+    pub walk_label: String,
+    pub walk_detail: String,
 }
 
 #[derive(Deserialize)]
@@ -165,8 +178,62 @@ pub struct Sport {
 pub struct Regular {
     pub name: String,
     pub when: String,
-    pub time: String,
     pub blurb: String,
+}
+
+/// The standing "what we put on" copy. Deliberately carries no times: nothing
+/// published states them, so nothing here claims them.
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct WhatsOnIntro {
+    pub heading: String,
+    pub lede: String,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Functions {
+    pub heading: String,
+    pub body: String,
+}
+
+/// One question and answer, rendered as copy and as FAQPage structured data.
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Faq {
+    pub q: String,
+    pub a: String,
+}
+
+/// The timeline. `approx` is the honest bit: a moment we can only place loosely
+/// says so in the markup rather than being rounded to a year that reads as fact.
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct History {
+    pub heading: String,
+    pub lede: String,
+    pub note: String,
+    pub moments: Vec<Moment>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Moment {
+    pub year: String,
+    pub approx: bool,
+    pub body: String,
+}
+
+/// Where a claim on this site came from.
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Source {
+    #[allow(dead_code)]
+    pub name: String,
+    #[allow(dead_code)]
+    pub url: String,
+    #[allow(dead_code)]
+    pub covers: String,
 }
 
 #[derive(Deserialize)]
@@ -314,5 +381,9 @@ mod tests {
         assert_eq!(site.hours.len(), 7, "a week has seven days");
         site.upcoming(date!(2000 - 01 - 01))
             .expect("every event date parses");
+        assert!(
+            !site.sources.is_empty(),
+            "content must record where its claims came from"
+        );
     }
 }

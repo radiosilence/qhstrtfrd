@@ -64,3 +64,5 @@ page!(Index, "index.html", upcoming: &'a [Upcoming<'a>]);
 page!(WhatsOn, "whats-on.html", upcoming: &'a [Upcoming<'a>]);
 page!(Sport, "sport.html");
 page!(FindUs, "find-us.html");
+page!(Faq, "faq.html");
+page!(History, "history.html");

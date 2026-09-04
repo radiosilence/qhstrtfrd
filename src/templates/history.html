@@ -1,0 +1,59 @@
+{% extends "page-base.html" %}
+
+{% block content %}
+{%- let v = site.venue %}
+{%- let pour = asset("img/pour.jpg") %}
+{%- let taps = asset("img/taps.jpg") %}
+
+<section class="shell band">
+  <div class="grid-2">
+    <div>
+      <p class="eyebrow">History</p>
+      <h1 class="display" style="font-size: var(--text-title)">{{ site.history.heading }}</h1>
+      <p class="lede" style="max-width: 38rem; margin-top: 1.75rem">{{ site.history.lede }}</p>
+    </div>
+    <div style="display: flex; justify-content: center">
+      {% include "sign.html" %}
+    </div>
+  </div>
+</section>
+
+<section class="shell band-tight">
+  {% include "divider.html" %}
+</section>
+
+<section class="shell band-tight">
+  <div class="timeline">
+    {%- for m in site.history.moments %}
+    <div class="moment{% if m.approx %} moment-approx{% endif %}">
+      <p class="moment-year">{{ m.year }}</p>
+      <p class="moment-body">{{ m.body }}</p>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="shell band-tight">
+  <div class="panel">
+    <p class="pull">&ldquo;The changes to the pub reflect the kind of venue this is,<br />and the East End itself.&rdquo;</p>
+    <span class="pull-cite">Craft Union, on reopening the Queen's Head &middot; March 2023</span>
+  </div>
+</section>
+
+<section class="shell band">
+  <div class="grid-2">
+    <div class="figure figure-framed">
+      <img class="duo" src="{{ pour }}" alt="A pint being poured at the Queen's Head"
+           width="1000" height="1000" loading="lazy" />
+    </div>
+    <div>
+      <p class="eyebrow">One more thing</p>
+      <h2 class="title">Fill in the gaps</h2>
+      <p class="prose-warm" style="margin-top: 1.5rem"><span>{{ site.history.note }}</span></p>
+      <p style="margin-top: 2rem">
+        <a class="btn btn-solid" href="tel:{{ v.phone_link }}">{{ v.phone_display }}</a>
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

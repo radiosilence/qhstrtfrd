@@ -1,0 +1,27 @@
+{#
+  Drawn once per page, hidden, and referenced by id from anywhere.
+
+  The duotone filter is the load-bearing one: three stock photographs put
+  through the same claret-and-brass ramp stop looking borrowed and start
+  looking like a set. feColorMatrix flattens to luminance, feComponentTransfer
+  maps that luminance onto the palette.
+#}
+<svg width="0" height="0" aria-hidden="true" focusable="false"
+     style="position: absolute; pointer-events: none">
+  <defs>
+    <filter id="duotone-claret" color-interpolation-filters="sRGB">
+      {# Rec. 709 luminance, so the ramp follows perceived brightness. #}
+      <feColorMatrix type="matrix" values="
+        0.2126 0.7152 0.0722 0 0
+        0.2126 0.7152 0.0722 0 0
+        0.2126 0.7152 0.0722 0 0
+        0      0      0      1 0" />
+      {# Shadows to claret #40111f, highlights to brass-cream #f0dcae. #}
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="0.25 0.94" />
+        <feFuncG type="table" tableValues="0.07 0.86" />
+        <feFuncB type="table" tableValues="0.12 0.68" />
+      </feComponentTransfer>
+    </filter>
+  </defs>
+</svg>
