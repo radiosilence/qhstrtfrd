@@ -17,6 +17,7 @@ pub struct Site {
     pub disclaimer: Disclaimer,
     pub venue: Venue,
     pub about: About,
+    pub welcome: Welcome,
     pub matchday: Matchday,
     pub hours: Vec<Hours>,
     pub bar: Bar,
@@ -102,6 +103,16 @@ impl Venue {
 pub struct About {
     pub heading: String,
     pub body: Vec<String>,
+}
+
+/// Who the pub is for. Its own block because it is a claim about the room
+/// rather than about the sport or the drink, and it earns the space.
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Welcome {
+    pub heading: String,
+    pub lede: String,
+    pub body: String,
 }
 
 #[derive(Deserialize)]

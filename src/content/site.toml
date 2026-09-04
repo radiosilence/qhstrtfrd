@@ -28,7 +28,7 @@ initials = "QH"
 tagline = "On West Ham Lane, where it should be."
 summary = "The Queen's Head, Stratford E15. A traditional pub on West Ham Lane — Guinness, every match on six HD screens, darts in the back, and a walk to the London Stadium."
 street = "5 West Ham Lane"
-street_alt = "Second entrance on Tramway Avenue"
+street_alt = "On the corner of Tramway Avenue"
 locality = "Stratford"
 city = "London"
 region = "Greater London"
@@ -48,13 +48,22 @@ origin = "https://queensheadstratford.london"
 [about]
 heading = "The local on West Ham Lane"
 body = [
-  "A U-shaped room with the bar down the middle and a chequerboard skirt along the counter. Booths against the wall, armchairs that have held up, and screens where you want them rather than everywhere at once. Two ways in — one on West Ham Lane, one on Tramway Avenue — which is the sort of thing you only notice about a pub you already know.",
-  "It is a traditional pub and it does not pretend to be anything else. There is no kitchen. There is no cask. What there is, is Guinness given the time it needs, a dartboard in the back, and every match that matters on six screens.",
+  "A U-shaped room with the bar down the middle and a chequerboard skirt along the counter. Booths against the wall, armchairs that have held up, and six screens placed so that wherever you end up sitting, you can see the match.",
+  "It is a traditional pub and it does not pretend to be anything else. There is no kitchen and there is no cask. What there is, is Guinness given the time it needs, every game that matters, and a room that has never much cared who you are as long as you are decent to the person next to you.",
   "In 2023 Craft Union put over £100,000 into the place — furniture, fittings, carpets, lighting and the six HD screens — and gave it a new sign with Queen Elizabeth II on it. The room it reopened into is the one described above, and the reason for the refit was stated plainly at the time: the changes reflect the kind of venue this is, and the East End itself."
 ]
 
 # West Ham. Sourced: Stonegate's own announcement says the pub shows West Ham
 # matches. The walk is measured by TfL, not guessed.
+# Who drinks here. Every strand of this is drawn from what the pub actually
+# puts on — an Irish pub with live music and salsa, 80s nights, singalongs and
+# a drag night, dogs welcome, sport on all day. That is a broad church by any
+# measure, and saying so is description rather than decoration.
+[welcome]
+heading = "Everybody's local"
+lede = "A room that has never much minded who you are."
+body = "In the course of a week this place is an Irish pub, a sports bar, a salsa floor, an 80s night, a singalong, a drag night and somebody's nan's birthday in the corner booth. The regulars have been coming for decades and nobody stares at anyone who hasn't. Dogs are welcome. Kids are welcome while the sun is up. Come in on your own and you will not be on your own for long, which is the entire job of a local and the thing this one is genuinely good at."
+
 [matchday]
 heading = "Claret and blue, before and after"
 lede = "West Ham on the screens, and the London Stadium a walk away through the park."
@@ -189,9 +198,9 @@ when = "Through the year"
 blurb = "All three have happened here, and all three will happen again."
 
 [[regulars]]
-name = "Darts & pool"
-when = "Whenever you like"
-blurb = "Board and table in the back. Free to play, and the regulars will explain the house rules whether or not you asked."
+name = "Sport, all day"
+when = "Every day"
+blurb = "Six screens, both subscriptions, and the sound up for the ones that deserve it. There is a board and a table in the back too, free to play, if the football is not on."
 
 # --- One-off events -----------------------------------------------------------
 # DELIBERATELY EMPTY.
@@ -225,8 +234,20 @@ body = "Birthdays, christenings, leaving dos, and more than one send-off done pr
 # and the absence of a kitchen (CAMRA and a visitor account both say no food).
 
 [[facilities]]
+name = "Six HD screens"
+detail = "Placed so there is a good view of the game from anywhere in the room."
+
+[[facilities]]
 name = "Sky Sports & TNT"
-detail = "Both, on six HD screens through the room."
+detail = "Both, all season, football and everything else."
+
+[[facilities]]
+name = "Step-free access"
+detail = "Level entry and an accessible toilet."
+
+[[facilities]]
+name = "Everybody welcome"
+detail = "Regulars of forty years and people who walked in ten minutes ago."
 
 [[facilities]]
 name = "Dogs welcome"
@@ -235,14 +256,6 @@ detail = "Bring them in."
 [[facilities]]
 name = "Free WiFi"
 detail = "Ask behind the bar."
-
-[[facilities]]
-name = "Darts & pool"
-detail = "In the back room."
-
-[[facilities]]
-name = "Two ways in"
-detail = "West Ham Lane and Tramway Avenue."
 
 [[facilities]]
 name = "Drinks, not dinner"
@@ -277,9 +290,13 @@ detail = "Stratford Broadway takes the 69, 104, 238, 241, 262, 276 and 473. Stra
 mode = "Driving"
 detail = "No car park, and you are inside both the ULEZ and the Congestion Charge's eastern approach. The Stratford Centre and Westfield car parks are the nearest."
 
+# Confirmed current by the pub, September 2026. This supersedes CAMRA's entry,
+# which still describes the pub as it was before the 2023 refit — steps at the
+# door and no accessible toilet. Do not "correct" this back to CAMRA: their
+# listing is the older record, not the truer one.
 [access]
-heading = "Getting in"
-body = "There are steps at the door and no accessible toilet. Better you hear it here than find it out on the doorstep. If that is going to be a problem, ring the bar before you set off — somebody will tell you straight what can and cannot be done."
+heading = "Step-free, and welcome"
+body = "You can get in without doing battle with a step, and there is an accessible toilet once you are in. Wheelchairs, walking frames, buggies, whatever gets you through the day — come in, and if you want a hand with anything or a table somewhere particular, say so at the bar and it will be sorted. Nobody here thinks that is a favour."
 
 # --- FAQ ----------------------------------------------------------------------
 # Rendered with FAQPage structured data. Every answer is sourced; none invents
@@ -307,7 +324,7 @@ a = "A mile or so — about twenty-five minutes on foot, straight through the Ol
 
 [[faq]]
 q = "Is it step-free?"
-a = "No. There are steps at the door and no accessible toilet. Ring the bar on 020 8536 1066 before you travel and ask."
+a = "Yes. Step-free entry and an accessible toilet inside. If you would like a table kept somewhere particular, ring ahead on 020 8536 1066 and it will be waiting."
 
 [[faq]]
 q = "Can I book it for a party?"
@@ -400,7 +417,12 @@ covers = "The £100,000 refit, six HD screens, the Queen Elizabeth II sign, West
 [[sources]]
 name = "CAMRA / WhatPub"
 url = "https://camra.org.uk/pubs/queens-head-stratford-155307"
-covers = "Irish pub with live music, Salsa Thursdays, darts and pool, no cask ale, steps at the entrance and no accessible toilet, two entrances, the former name Le Pub, archive photographs from 1985 and 1987."
+covers = "Irish pub with live music, Salsa Thursdays, darts and pool, no cask ale, two entrances, the former name Le Pub, archive photographs from 1985 and 1987. NOTE: its access entry is out of date — see below."
+
+[[sources]]
+name = "The pub, September 2026"
+url = "tel:+442085361066"
+covers = "Accessibility. CAMRA still records steps at the entrance and no accessible toilet, which described the pub before its 2023 refurbishment. The pub confirms it is now step-free with an accessible toilet, and that is what the site says. A person in a wheelchair travelling across London on the strength of this page is the reason it was worth checking rather than copying."
 
 [[sources]]
 name = "Pubs Galore"
