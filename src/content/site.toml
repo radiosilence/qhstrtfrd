@@ -42,9 +42,14 @@ facebook = "https://www.facebook.com/stratfordqueenshead/"
 instagram = "https://www.instagram.com/queenshead.stratford/"
 origin = "https://queensheadstratford.london"
 
-# The room. Descriptive, and every concrete detail is sourced — the U-shaped
-# bar and the chequerboard skirt from a visitor's description, the refit from
-# Stonegate's own announcement, the two entrances from CAMRA.
+# The room. Every concrete detail is sourced: the island bar and the
+# chequerboard skirt from a visitor's description, the refit from Stonegate's
+# own announcement.
+#
+# That visitor called it "a U shaped venue", which is accurate and was the
+# opening line here for a while. It reads as a survey entry because that is
+# what it was — the right observation in the wrong register for a pub's own
+# front page.
 [about]
 heading = "The local on West Ham Lane"
 body = [
