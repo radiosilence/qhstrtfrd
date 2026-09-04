@@ -25,7 +25,7 @@ official_url = "https://www.craftunionpubs.com/queens-head-stratford"
 name = "The Queen's Head"
 short_name = "Queen's Head Stratford"
 initials = "QH"
-tagline = "On West Ham Lane, where it should be."
+tagline = "A West Ham Lane local since before the skyline. Six screens, proper Guinness, everybody welcome."
 summary = "The Queen's Head, Stratford E15. A proper local on West Ham Lane — Guinness, every match on six screens, step-free, and everybody welcome. A walk from the London Stadium."
 street = "5 West Ham Lane"
 street_alt = "On the corner of Tramway Avenue"
@@ -50,12 +50,19 @@ origin = "https://queensheadstratford.london"
 # opening line here for a while. It reads as a survey entry because that is
 # what it was — the right observation in the wrong register for a pub's own
 # front page.
+# The blunt facts, stated the way a pub states them. Sits directly under the
+# hero, above any prose. Modelled on the Southampton Arms, whose entire homepage
+# is its address, its hours and one useful sentence — and which is beloved.
+[plain]
+line1 = "Open 11am every day. Close 11pm, 10pm Sundays."
+line2 = "5 West Ham Lane, Stratford E15 4PH. Two minutes off the Broadway."
+line3 = "Step-free, dogs welcome, no kitchen. Cash and card."
+
 [about]
 heading = "The local on West Ham Lane"
 body = [
   "The bar runs down the middle with a chequerboard skirt along the front of it. Booths against the wall, armchairs that have taken a battering and held up, and six screens put where you can actually see them.",
-  "No kitchen, no cask. What there is: Guinness poured properly, and every game that matters.",
-  "It was refitted in 2023 — new furniture, carpets, lighting, the screens, and a new sign with the Queen on it."
+  "No kitchen, no cask. Guinness poured properly, every game that matters, and a refit in 2023 that gave the place new carpets, new lighting and a new sign with the Queen on it."
 ]
 
 # West Ham. Sourced: Stonegate's own announcement says the pub shows West Ham
@@ -67,7 +74,7 @@ body = [
 [welcome]
 heading = "Everybody's local"
 lede = "A room that has never much minded who you are."
-body = "In one week this place is an Irish pub, a sports bar, a salsa floor, an 80s night, a drag night and somebody's nan's birthday in the corner booth. Some of the regulars have been coming for thirty years. Nobody stares at anyone who hasn't. Dogs welcome, kids welcome while it's light."
+body = "In one week this place is an Irish pub, a sports bar, a salsa floor, an 80s night, a drag night and somebody's nan's birthday in the corner booth. Some of the regulars have thirty years on you. Nobody minds."
 
 [matchday]
 heading = "Claret and blue, before and after"

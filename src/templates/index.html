@@ -55,6 +55,35 @@
   </div>
 </section>
 
+<section class="shell plain-band">
+  <ul class="plain">
+    <li>{{ site.plain.line1 }}</li>
+    <li>{{ site.plain.line2 }}</li>
+    <li>{{ site.plain.line3 }}</li>
+  </ul>
+</section>
+
+<section class="shell band-tight">
+  <div class="figures">
+    <div class="figure-cell">
+      <p class="figure-num">6</p>
+      <p class="figure-label">HD screens</p>
+    </div>
+    <div class="figure-cell">
+      <p class="figure-num">11am</p>
+      <p class="figure-label">Open, every day</p>
+    </div>
+    <div class="figure-cell">
+      <p class="figure-num">575m</p>
+      <p class="figure-label">To Stratford station</p>
+    </div>
+    <div class="figure-cell">
+      <p class="figure-num">1.7km</p>
+      <p class="figure-label">To the London Stadium</p>
+    </div>
+  </div>
+</section>
+
 <section class="shell band">
   <div class="grid-2">
     <div>
@@ -101,27 +130,6 @@
   </div>
 </section>
 
-<section class="shell band-tight">
-  <div class="figures">
-    <div class="figure-cell">
-      <p class="figure-num">6</p>
-      <p class="figure-label">HD screens</p>
-    </div>
-    <div class="figure-cell">
-      <p class="figure-num">11am</p>
-      <p class="figure-label">Open, every day</p>
-    </div>
-    <div class="figure-cell">
-      <p class="figure-num">575m</p>
-      <p class="figure-label">To Stratford station</p>
-    </div>
-    <div class="figure-cell">
-      <p class="figure-num">1.7km</p>
-      <p class="figure-label">To the London Stadium</p>
-    </div>
-  </div>
-</section>
-
 <section class="shell band">
   <p class="eyebrow">{{ site.bar.heading }}</p>
   <h2 class="title" style="max-width: 22ch">What's on the taps</h2>
@@ -129,6 +137,7 @@
 
   <div style="margin-top: 3rem">
     {%- for tap in site.bar.taps %}
+    {%- if loop.index0 < 4 %}
     <div class="tap">
       <div>
         <span class="tap-name">{{ tap.name }}</span>
@@ -136,6 +145,7 @@
       </div>
       <p class="tap-note">{{ tap.note }}</p>
     </div>
+    {%- endif %}
     {%- endfor %}
   </div>
 </section>
@@ -143,34 +153,19 @@
 <hr class="rule" />
 
 <section class="shell band">
-  <p class="eyebrow">Every week</p>
-  <h2 class="title">Most nights, something's on</h2>
-  <div class="grid-3" style="margin-top: 3rem">
-    {%- for r in site.regulars %}
-    <article class="card">
-      <p class="card-meta">{{ r.when }}</p>
-      <h3 class="card-title">{{ r.name }}</h3>
-      <p>{{ r.blurb }}</p>
-    </article>
-    {%- endfor %}
-  </div>
-
-  {%- if !upcoming.is_empty() %}
-  <div style="margin-top: 4rem">
-    <p class="eyebrow">Coming up</p>
-    {%- for u in upcoming %}
-    <div class="event">
-      <time class="event-date" datetime="{{ u.iso }}">{{ u.label }}</time>
-      <div>
-        <h3 class="event-name">{{ u.event.name }}</h3>
-        <p class="event-time">{{ u.event.time }}</p>
-        <p style="margin-top: 0.6rem; color: color-mix(in srgb, #f6f1e7 72%, transparent)">{{ u.event.blurb }}</p>
-      </div>
+  <div class="grid-2">
+    <div>
+      <p class="eyebrow">Every week</p>
+      <h2 class="title">Most nights, something's on</h2>
+      <p class="lede" style="margin-top: 1.5rem">{{ site.whatson.lede }}</p>
+      <p style="margin-top: 2rem"><a class="btn" href="/whats-on">What's on</a></p>
     </div>
-    {%- endfor %}
-    <p style="margin-top: 2rem"><a class="btn" href="/whats-on">Everything that's on</a></p>
+    <div class="chips">
+      {%- for r in site.regulars %}
+      <span class="chip">{{ r.name }} &middot; {{ r.when }}</span>
+      {%- endfor %}
+    </div>
   </div>
-  {%- endif %}
 </section>
 
 <section class="band-claret band">

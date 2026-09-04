@@ -1061,3 +1061,45 @@
     color: color-mix(in srgb, var(--color-cream) 62%, transparent);
   }
 }
+
+@layer components {
+  /* The plain facts, directly under the hero.
+     Guillemets rather than bullets, after the Southampton Arms — whose whole
+     homepage is its address and "we close around 11 or 12", and which is one of
+     the best-loved pubs in London. Practical beats poetic above the fold. */
+
+  .plain-band {
+    padding-block: clamp(1.75rem, 4vw, 2.75rem);
+  }
+
+  .plain {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  @media (min-width: 60rem) {
+    .plain {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  .plain li {
+    position: relative;
+    padding-left: 1.4rem;
+    font-size: clamp(0.98rem, 1.5vw, 1.08rem);
+    line-height: 1.5;
+    color: color-mix(in srgb, var(--color-cream) 88%, transparent);
+  }
+
+  .plain li::before {
+    content: "»";
+    position: absolute;
+    left: 0;
+    color: var(--color-brass);
+    font-weight: 700;
+  }
+}

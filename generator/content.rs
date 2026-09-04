@@ -16,6 +16,7 @@ use time::{Date, Month, Weekday, macros::format_description};
 pub struct Site {
     pub disclaimer: Disclaimer,
     pub venue: Venue,
+    pub plain: Plain,
     pub about: About,
     pub welcome: Welcome,
     pub matchday: Matchday,
@@ -96,6 +97,20 @@ impl Venue {
             )
         )
     }
+}
+
+/// Three flat statements, directly under the hero and above any prose.
+///
+/// The survey of 44 pub sites is unambiguous about this: the ones people love
+/// lead with where they are and when they open, not with atmosphere. The
+/// Southampton Arms says "we are open from midday everyday. We close around 11
+/// or 12" and stops. This is that.
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Plain {
+    pub line1: String,
+    pub line2: String,
+    pub line3: String,
 }
 
 #[derive(Deserialize)]
