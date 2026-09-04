@@ -1,0 +1,232 @@
+# Everything about the pub that a person might want to change, in one file.
+#
+# The generator derives the rest: weekday names come from the date, the JSON-LD
+# opening hours come from `[[hours]]`, and an event whose date has passed stops
+# rendering. Nothing here is repeated in a template.
+
+[venue]
+name = "The Queen's Head"
+short_name = "Queen's Head Stratford"
+# Used where the full name would wrap badly — the nav mark, the footer.
+initials = "QH"
+tagline = "On West Ham Lane, where it should be."
+# One sentence, under 160 characters: this is the meta description and the thing
+# Google prints under the link.
+summary = "The Queen's Head, Stratford E15. A claret-and-blue local on West Ham Lane — Guinness poured properly, every match on, and a walk to the London Stadium."
+street = "5 West Ham Lane"
+street_alt = "Second entrance on Tramway Avenue"
+locality = "Stratford"
+city = "London"
+region = "Greater London"
+postcode = "E15 4PH"
+country = "GB"
+phone_display = "020 8536 1066"
+phone_link = "+442085361066"
+latitude = 51.539593
+longitude = 0.003900
+facebook = "https://www.facebook.com/stratfordqueenshead/"
+instagram = "https://www.instagram.com/queenshead.stratford/"
+# Sets canonical URLs, og:url and the sitemap. No trailing slash.
+origin = "https://queensheadstratford.london"
+
+# The room, on the homepage. Three paragraphs, no more.
+[about]
+heading = "The local, on the lane that gave the club its name"
+body = [
+  "Some pubs are near West Ham. This one is on West Ham Lane — the same lane, the same corner, a claret-and-blue room that was here for the Boleyn and is still here for the London Stadium. Fifteen minutes up the road on a matchday, and every one of those minutes is spent with people singing.",
+  "Inside it is a U-shaped bar, a chequerboard skirt along the counter, booths down the wall and armchairs that have earned their place. Screens where you want them. A dartboard in the back that has settled more arguments than it started. The Guinness gets the time it needs — nobody here has ever rushed a pour and nobody ever will.",
+  "It has served this corner for the better part of forty years, through a spell under a name nobody uses any more, through the Olympics arriving on the doorstep and half the neighbourhood being rebuilt around it. The glass towers went up. The Queen's Head stayed exactly where it was, which is the entire point of it."
+]
+
+# The matchday pitch. Its own block because it is the thing the pub is for.
+[matchday]
+heading = "Claret and blue, before and after"
+lede = "The London Stadium is a fifteen-minute walk through the park. This is where you start and where you come back to."
+body = "Doors open at eleven, and on a home Saturday the room fills long before kick-off — pints on the counter, the early game on, the day being talked into shape. Come back after and it'll still be going. Bubbles has been sung in here more times than anyone has counted, and it will be sung again."
+walk = "15 minutes on foot through Queen Elizabeth Olympic Park"
+
+# --- Hours -------------------------------------------------------------------
+# 24-hour clock. `day` is the full English name; the JSON-LD abbreviation and the
+# short label are derived from it.
+
+[[hours]]
+day = "Monday"
+open = "11:00"
+close = "23:00"
+
+[[hours]]
+day = "Tuesday"
+open = "11:00"
+close = "23:00"
+
+[[hours]]
+day = "Wednesday"
+open = "11:00"
+close = "23:00"
+
+[[hours]]
+day = "Thursday"
+open = "11:00"
+close = "23:00"
+
+[[hours]]
+day = "Friday"
+open = "11:00"
+close = "23:00"
+
+[[hours]]
+day = "Saturday"
+open = "11:00"
+close = "23:00"
+
+[[hours]]
+day = "Sunday"
+open = "11:00"
+close = "22:00"
+
+# --- The bar -----------------------------------------------------------------
+
+[bar]
+heading = "Behind the bar"
+note = "Keg and tap — no cask, and we'd rather say so here than have you ask twice. The lager line-up moves about. The Guinness never does."
+
+[[bar.taps]]
+name = "Guinness"
+style = "Irish stout"
+note = "Two-part pour, left to settle, handed over when it's ready and not before."
+
+[[bar.taps]]
+name = "Camden Hells"
+style = "Helles lager"
+note = "Brewed up the road in Enfield. Cold, clean, gone quicker than you meant."
+
+[[bar.taps]]
+name = "Peroni"
+style = "Italian lager"
+note = "What the room drinks when the sun gets over the Broadway."
+
+[[bar.taps]]
+name = "Strongbow"
+style = "Cider"
+note = "Original, extra cold. No further notes required."
+
+[[bar.taps]]
+name = "Foster's"
+style = "Lager"
+note = "Still on, still sensible money, still exactly what some people want."
+
+# --- Sport -------------------------------------------------------------------
+
+[sport]
+heading = "Every match, every screen"
+lede = "Sky Sports and TNT Sports, HD screens right through the room, and the sound up for the ones that have earned it."
+note = "Derbies and big European nights fill this place out. Ring ahead and we'll keep a booth back for you."
+
+competitions = [
+  "Premier League",
+  "Champions League",
+  "Europa & Conference League",
+  "EFL & FA Cup",
+  "Six Nations & club rugby",
+  "Horse racing",
+  "Boxing",
+  "Golf",
+  "Formula 1",
+  "PDC darts",
+]
+
+# --- Weekly regulars ----------------------------------------------------------
+# Evergreen: these render as "every Thursday" and never go stale.
+
+[[regulars]]
+name = "Salsa Thursdays"
+when = "Thursdays"
+time = "From 8pm"
+blurb = "The floor clears, the music goes on, and the room becomes something else entirely for a few hours. Beginners genuinely welcome — somebody will show you the step before you've finished your first drink."
+
+[[regulars]]
+name = "Live music"
+when = "Fridays & Saturdays"
+time = "From 9pm"
+blurb = "Guitars, covers, the occasional full band folded into the corner by the window. No cover charge, no guest list, no nonsense."
+
+[[regulars]]
+name = "Darts & pool"
+when = "Every day"
+time = "Whenever you fancy"
+blurb = "Board's in the back, table's free, chalk is where it has always been. Winner stays on, and the regulars will explain the house rules whether or not you asked."
+
+# --- One-off events -----------------------------------------------------------
+# `date` is ISO. Anything before today stops rendering, so a stale list is a short
+# list rather than a wrong one. Delete freely; nothing links to them.
+
+[[events]]
+date = "2026-09-12"
+name = "Live: The Bootleg Shakes"
+time = "9pm"
+blurb = "Four blokes, a great deal of Thin Lizzy, and no intention of stopping early."
+
+[[events]]
+date = "2026-09-19"
+name = "Charity quiz for Newham Foodbank"
+time = "7:30pm"
+blurb = "Teams of six, two quid a head, every penny over the road. Rounds on the Irons, the telly, and things that have happened within a mile of this bar."
+
+[[events]]
+date = "2026-10-03"
+name = "Matchday: doors from 11"
+time = "All day"
+blurb = "Early game on, room filling by one, and the walk up to the stadium leaves from the front door."
+
+# --- Facilities ---------------------------------------------------------------
+
+[[facilities]]
+name = "Sky Sports & TNT"
+detail = "Both, all season, every screen in HD."
+
+[[facilities]]
+name = "Dogs welcome"
+detail = "Bring them in — there's usually a bowl down by the bar."
+
+[[facilities]]
+name = "Free WiFi"
+detail = "Ask behind the bar and someone will tell you the password."
+
+[[facilities]]
+name = "Darts & pool"
+detail = "Board and table in the back, free to play, all day."
+
+[[facilities]]
+name = "Two ways in"
+detail = "West Ham Lane and Tramway Avenue."
+
+[[facilities]]
+name = "Card & cash"
+detail = "Both, all day, no minimum spend."
+
+# --- Getting here --------------------------------------------------------------
+
+[travel]
+heading = "Finding us"
+lede = "Two minutes off Stratford Broadway, on the corner where West Ham Lane meets Tramway Avenue."
+
+[[travel.routes]]
+mode = "Tube, DLR & Overground"
+detail = "Stratford — Central, Jubilee, Elizabeth line, DLR and Overground. 350 metres, about four minutes on foot."
+
+[[travel.routes]]
+mode = "London Stadium"
+detail = "Fifteen minutes through Queen Elizabeth Olympic Park. Out of the door, left, and follow everyone else."
+
+[[travel.routes]]
+mode = "Bus"
+detail = "Everything through Stratford Broadway and the bus station: 25, 86, 104, 108, 158, 238, 241, 262, 276, 308, 425, 473."
+
+[[travel.routes]]
+mode = "Driving"
+detail = "No car park, and you're well inside the ULEZ. Stratford Centre and Westfield are the nearest, about five minutes away."
+
+[access]
+heading = "Getting in"
+# Honest rather than flattering. A wasted journey is worse than an awkward sentence.
+body = "There are steps at both entrances and no accessible toilet — we would rather tell you here than have you find out on the doorstep. If you are heading down and that is going to be a problem, ring the number below and we will do whatever we can to get you in and sat down."

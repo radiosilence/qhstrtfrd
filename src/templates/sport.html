@@ -1,0 +1,74 @@
+{% extends "page-base.html" %}
+
+{% block content %}
+{%- let v = site.venue %}
+{%- let crowd = asset("img/crowd.jpg") %}
+{%- let crowd_small = asset("img/crowd-960.jpg") %}
+{%- let taps = asset("img/taps.jpg") %}
+{%- let taps_small = asset("img/taps-450.jpg") %}
+
+<section class="shell band">
+  <p class="eyebrow">Sport</p>
+  <h1 class="display" style="font-size: var(--text-title)">{{ site.sport.heading }}</h1>
+  <p class="lede" style="max-width: 42rem; margin-top: 1.75rem">{{ site.sport.lede }}</p>
+</section>
+
+<section class="band-photo band">
+  <img src="{{ crowd }}" srcset="{{ crowd_small }} 960w, {{ crowd }} 1920w" sizes="100vw"
+       alt="" aria-hidden="true" width="1920" height="500" loading="lazy" />
+  <div class="shell">
+    <div style="max-width: 40rem">
+      <p class="eyebrow">Claret and blue</p>
+      <h2 class="title">{{ site.matchday.heading }}</h2>
+      <p class="lede" style="margin-top: 1.5rem">{{ site.matchday.lede }}</p>
+      <p class="prose-warm" style="margin-top: 1.25rem"><span>{{ site.matchday.body }}</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="shell band">
+  <p class="eyebrow">On the screens</p>
+  <h2 class="title">Everything worth watching</h2>
+  <div class="chips" style="margin-top: 2.5rem">
+    {%- for c in site.sport.competitions %}
+    <span class="chip">{{ c }}</span>
+    {%- endfor %}
+  </div>
+  <p class="lede" style="max-width: 42rem; margin-top: 2.5rem">{{ site.sport.note }}</p>
+  <p style="margin-top: 2rem">
+    <a class="btn btn-solid" href="tel:{{ v.phone_link }}">Ring the bar &middot; {{ v.phone_display }}</a>
+  </p>
+</section>
+
+<hr class="rule" />
+
+<section class="shell band">
+  <div class="grid-2">
+    <div>
+      <p class="eyebrow">Between the matches</p>
+      <h2 class="title">Darts, pool and a proper pint</h2>
+      <p class="prose-warm" style="margin-top: 1.5rem">
+        <span>The board is in the back and the table next to it, both free, both busy from about
+        seven. Winner stays on. If you turn up on your own with a set of darts in your pocket you
+        will have a game inside ten minutes, which is more or less the whole point of the place.</span>
+      </p>
+      <div class="grid-3" style="margin-top: 2.5rem; grid-template-columns: 1fr">
+        {%- for f in site.facilities %}
+        {%- if loop.index0 < 3 %}
+        <div class="card" style="padding: 1.4rem">
+          <h3 class="card-title" style="font-size: 1.15rem">{{ f.name }}</h3>
+          <p>{{ f.detail }}</p>
+        </div>
+        {%- endif %}
+        {%- endfor %}
+      </div>
+    </div>
+    <div class="figure figure-framed">
+      <img src="{{ taps }}" srcset="{{ taps_small }} 450w, {{ taps }} 900w"
+           sizes="(min-width: 56rem) 36rem, 92vw"
+           alt="Pump clips along the bar at the Queen's Head"
+           width="900" height="450" loading="lazy" />
+    </div>
+  </div>
+</section>
+{% endblock %}

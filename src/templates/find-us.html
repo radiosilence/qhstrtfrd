@@ -1,0 +1,105 @@
+{% extends "page-base.html" %}
+
+{%- block schema %}
+{%- let v = site.venue %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ v.origin }}/" },
+    { "@type": "ListItem", "position": 2, "name": "Find Us", "item": "{{ v.origin }}/find-us" }
+  ]
+}
+</script>
+{%- endblock %}
+
+{% block content %}
+{%- let v = site.venue %}
+{%- let taps = asset("img/taps.jpg") %}
+
+<section class="shell band">
+  <p class="eyebrow">{{ site.travel.heading }}</p>
+  <h1 class="display" style="font-size: var(--text-title)">{{ v.street }}<br />{{ v.locality }}, {{ v.postcode }}</h1>
+  <p class="lede" style="max-width: 42rem; margin-top: 1.75rem">{{ site.travel.lede }}</p>
+  <p style="margin-top: 2.25rem; display: flex; gap: 0.9rem; flex-wrap: wrap">
+    <a class="btn btn-solid" href="{{ v.maps_url() }}" target="_blank" rel="noopener">Open in Maps</a>
+    <a class="btn" href="tel:{{ v.phone_link }}">{{ v.phone_display }}</a>
+  </p>
+  <p style="margin-top: 1.5rem; color: var(--color-muted); font-size: 0.95rem">{{ v.street_alt }}.</p>
+</section>
+
+<hr class="rule" />
+
+<section class="shell band">
+  <div class="grid-2" style="align-items: start">
+    <div>
+      <p class="eyebrow">Getting here</p>
+      <h2 class="title">However you're coming</h2>
+      <div style="margin-top: 2.5rem">
+        {%- for r in site.travel.routes %}
+        <div class="tap">
+          <div><span class="tap-name" style="font-size: 1.2rem">{{ r.mode }}</span></div>
+          <p class="tap-note">{{ r.detail }}</p>
+        </div>
+        {%- endfor %}
+      </div>
+    </div>
+
+    <div>
+      <table class="hours">
+        <caption class="eyebrow" style="text-align: left">Opening hours</caption>
+        <tbody>
+          {%- for h in site.hours %}
+          <tr data-day="{{ loop.index0 }}">
+            <th scope="row">{{ h.day }}</th>
+            <td>{{ h.open_display() }} – {{ h.close_display() }}</td>
+          </tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+
+      <div class="card" style="margin-top: 2.5rem">
+        <h3 class="card-title" style="font-size: 1.25rem">{{ site.access.heading }}</h3>
+        <p>{{ site.access.body }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band-claret band">
+  <div class="shell">
+    <p class="eyebrow">Inside</p>
+    <h2 class="title">What you'll find</h2>
+    <div class="grid-3" style="margin-top: 3rem">
+      {%- for f in site.facilities %}
+      <div class="card" style="padding: 1.5rem">
+        <h3 class="card-title" style="font-size: 1.2rem">{{ f.name }}</h3>
+        <p>{{ f.detail }}</p>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="shell band">
+  <div class="grid-2">
+    <div class="figure figure-framed">
+      <img src="{{ taps }}" alt="Pump clips along the bar" width="900" height="450" loading="lazy" />
+    </div>
+    <div>
+      <p class="eyebrow">Say hello</p>
+      <h2 class="title">Ring, or just turn up</h2>
+      <p class="prose-warm" style="margin-top: 1.5rem">
+        <span>Turning up is generally the better plan. If you want a booth held for a big match, a
+        room for a birthday, or you just want to know whether the Guinness is behaving today, the
+        phone is behind the bar and somebody will answer it.</span>
+      </p>
+      <p style="margin-top: 2rem; display: flex; gap: 0.9rem; flex-wrap: wrap">
+        <a class="btn btn-solid" href="tel:{{ v.phone_link }}">{{ v.phone_display }}</a>
+        <a class="btn" href="{{ v.facebook }}" target="_blank" rel="noopener">Facebook</a>
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

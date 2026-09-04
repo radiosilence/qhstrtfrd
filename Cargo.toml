@@ -1,0 +1,30 @@
+[package]
+name = "queenshead"
+version = "0.1.0"
+edition = "2024"
+
+# The generator lives beside the site rather than under it: `src/` is what the site
+# is made of, `generator/` is the program that turns it into `dist/`.
+[lib]
+name = "queenshead"
+path = "generator/lib.rs"
+
+[[bin]]
+name = "queenshead"
+path = "generator/main.rs"
+
+[dependencies]
+anyhow = "1"
+askama = "0.16"
+serde = { version = "1", features = ["derive"] }
+sha2 = "0.10"
+# Dates are the one thing here that cannot be a string: an event is dropped once it
+# has passed, and "Thu 11 Sep" is derived rather than typed so a date and its weekday
+# cannot disagree.
+time = { version = "0.3", features = ["formatting", "macros", "parsing"] }
+toml = "0.9"
+walkdir = "2"
+
+[profile.release]
+opt-level = 3
+lto = true

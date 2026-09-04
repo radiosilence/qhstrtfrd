@@ -1,0 +1,796 @@
+@import "tailwindcss";
+
+/* Variable fonts, latin subset only. The URLs are rewritten to their hashed
+   names by the generator before this file is itself hashed — see main.rs.
+   Deliberately outside @layer: @font-face in a layer is ignored by some engines. */
+@font-face {
+  font-family: "Fraunces";
+  src: url("/fraunces.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("/instrument-sans.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Claret and blue, because that is what this pub is. The claret is pulled
+     down towards black so it can carry full-bleed sections without shouting;
+     the brass is what actually does the decorating. */
+  --color-ink: #0a090b;
+  --color-ink-2: #121016;
+  --color-ink-3: #1a1720;
+  --color-claret: #6b1e38;
+  --color-claret-deep: #40111f;
+  --color-claret-lit: #b03e63;
+  --color-brass: #c9a24a;
+  --color-brass-lit: #ecd399;
+  --color-sky: #2fa8de;
+  --color-cream: #f6f1e7;
+  --color-muted: #a79c8d;
+  --color-hairline: #2b2530;
+
+  --text-display: clamp(3rem, 11vw, 8.5rem);
+  --text-title: clamp(2.25rem, 5.5vw, 4rem);
+  --text-lede: clamp(1.125rem, 1.9vw, 1.5rem);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-cream);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    /* A very slight warm cast over the whole page, so the black is never a
+       screen-door grey. */
+    background-image: radial-gradient(
+      120% 80% at 50% 0%,
+      rgb(107 30 56 / 0.22) 0%,
+      transparent 60%
+    );
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: var(--color-brass);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.022em;
+    font-variation-settings: "SOFT" 12, "WONK" 1;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* --- Structure ------------------------------------------------------- */
+
+  .shell {
+    width: 100%;
+    max-width: 78rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 48rem) {
+    .shell {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .band {
+    padding-block: clamp(4.5rem, 11vw, 9rem);
+  }
+
+  .band-tight {
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+
+  /* A hairline that is brass in the middle and nothing at the ends. Used to
+     separate bands without drawing a box around everything. */
+  .rule {
+    height: 1px;
+    border: 0;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--color-hairline) 15%,
+      var(--color-brass) 50%,
+      var(--color-hairline) 85%,
+      transparent
+    );
+    opacity: 0.55;
+  }
+
+  /* --- Type ------------------------------------------------------------ */
+
+  /* The label above a heading. Small, brass, spaced out — it does most of the
+     work of making a section feel considered. */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-brass);
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .eyebrow::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--color-brass), transparent);
+    opacity: 0.45;
+    max-width: 7rem;
+  }
+
+  .eyebrow-center {
+    justify-content: center;
+  }
+
+  .eyebrow-center::after,
+  .eyebrow-center::before {
+    content: "";
+    flex: 0 0 3.5rem;
+    height: 1px;
+    background: var(--color-brass);
+    opacity: 0.45;
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-size: var(--text-display);
+    font-weight: 400;
+    line-height: 0.88;
+    letter-spacing: -0.035em;
+    font-variation-settings: "SOFT" 20, "WONK" 1;
+  }
+
+  .title {
+    font-size: var(--text-title);
+  }
+
+  .lede {
+    font-size: var(--text-lede);
+    line-height: 1.5;
+    color: color-mix(in srgb, var(--color-cream) 88%, transparent);
+    text-wrap: balance;
+  }
+
+  .prose-warm p {
+    color: color-mix(in srgb, var(--color-cream) 78%, transparent);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+
+  .prose-warm p + p {
+    margin-top: 1.4rem;
+  }
+
+  /* First line of the first paragraph, in small caps — an editorial touch that
+     costs nothing and reads as considered. */
+  .prose-warm > p:first-of-type::first-line {
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.06em;
+    color: var(--color-cream);
+  }
+
+  /* --- Hero ------------------------------------------------------------ */
+
+  .hero {
+    position: relative;
+    min-height: min(92svh, 54rem);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+  }
+
+  .hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 38%;
+  }
+
+  /* Two overlays rather than one: a claret wash for colour, and a vertical
+     gradient to black so the type at the bottom always has contrast no matter
+     what the photograph is doing behind it. */
+  .hero-wash {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(
+        to top,
+        var(--color-ink) 2%,
+        rgb(10 9 11 / 0.72) 32%,
+        rgb(64 17 31 / 0.45) 62%,
+        rgb(10 9 11 / 0.55) 100%
+      ),
+      radial-gradient(
+        90% 60% at 50% 100%,
+        rgb(107 30 56 / 0.5),
+        transparent 70%
+      );
+  }
+
+  .hero-inner {
+    position: relative;
+    width: 100%;
+    padding-bottom: clamp(3rem, 7vw, 6rem);
+    padding-top: 8rem;
+  }
+
+  /* --- The crest ------------------------------------------------------- */
+
+  .crest {
+    width: clamp(4.5rem, 8vw, 6.5rem);
+    height: auto;
+    filter: drop-shadow(0 2px 12px rgb(0 0 0 / 0.6));
+  }
+
+  .mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .mark-name {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+  }
+
+  .mark-sub {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-brass);
+    line-height: 1;
+  }
+
+  /* --- Nav ------------------------------------------------------------- */
+
+  .topbar {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    z-index: 20;
+    padding-block: 1.4rem;
+  }
+
+  .topbar-solid {
+    position: sticky;
+    background: color-mix(in srgb, var(--color-ink) 88%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+
+  .topbar-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .nav {
+    display: none;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  @media (min-width: 52rem) {
+    .nav {
+      display: flex;
+    }
+  }
+
+  .nav a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-cream) 72%, transparent);
+    padding-block: 0.35rem;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .nav a:hover {
+    color: var(--color-cream);
+    border-bottom-color: var(--color-brass);
+  }
+
+  .nav a[aria-current="page"] {
+    color: var(--color-brass-lit);
+    border-bottom-color: var(--color-brass);
+  }
+
+  /* --- Buttons --------------------------------------------------------- */
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.85rem 1.6rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border: 1px solid var(--color-brass);
+    color: var(--color-brass-lit);
+    transition: background-color 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn:hover {
+    background: var(--color-brass);
+    color: var(--color-ink);
+  }
+
+  .btn-solid {
+    background: var(--color-claret);
+    border-color: var(--color-claret-lit);
+    color: var(--color-cream);
+  }
+
+  .btn-solid:hover {
+    background: var(--color-claret-lit);
+    color: var(--color-ink);
+  }
+
+  /* --- Status pill ----------------------------------------------------- */
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.4rem 0.9rem 0.4rem 0.75rem;
+    border: 1px solid var(--color-hairline);
+    border-radius: 100px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    background: rgb(10 9 11 / 0.6);
+    color: var(--color-muted);
+  }
+
+  .pill-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 100px;
+    background: var(--color-muted);
+  }
+
+  /* Set by the enhancement script once it knows the time. Until then the pill
+     shows the neutral "Open 11am daily" state, which is true either way. */
+  .pill[data-state="open"] {
+    color: var(--color-cream);
+    border-color: color-mix(in srgb, var(--color-brass) 55%, transparent);
+  }
+
+  .pill[data-state="open"] .pill-dot {
+    background: #48d17a;
+    box-shadow: 0 0 0 3px rgb(72 209 122 / 0.18);
+  }
+
+  .pill[data-state="closed"] .pill-dot {
+    background: var(--color-claret-lit);
+  }
+
+  /* --- Cards ----------------------------------------------------------- */
+
+  .card {
+    position: relative;
+    padding: 1.9rem;
+    background: linear-gradient(
+      160deg,
+      var(--color-ink-2),
+      var(--color-ink) 70%
+    );
+    border: 1px solid var(--color-hairline);
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .card:hover {
+    border-color: color-mix(in srgb, var(--color-brass) 45%, transparent);
+  }
+
+  /* A brass corner tick, top-left. Cheaper than a border and far less heavy. */
+  .card::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-top: 2px solid var(--color-brass);
+    border-left: 2px solid var(--color-brass);
+    opacity: 0.75;
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-meta {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-brass);
+    margin-bottom: 0.9rem;
+  }
+
+  .card p {
+    color: color-mix(in srgb, var(--color-cream) 72%, transparent);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .grid-3 {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 44rem) {
+    .grid-3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .grid-2 {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+
+  @media (min-width: 56rem) {
+    .grid-2 {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* --- Tap list -------------------------------------------------------- */
+
+  .tap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.3rem 2rem;
+    padding-block: 1.4rem;
+    border-top: 1px solid var(--color-hairline);
+  }
+
+  @media (min-width: 44rem) {
+    .tap {
+      grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+      align-items: baseline;
+    }
+  }
+
+  .tap:last-child {
+    border-bottom: 1px solid var(--color-hairline);
+  }
+
+  .tap-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.1;
+  }
+
+  .tap-style {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+    color: var(--color-brass);
+    display: block;
+    margin-top: 0.3rem;
+  }
+
+  .tap-note {
+    color: color-mix(in srgb, var(--color-cream) 70%, transparent);
+    font-size: 0.98rem;
+  }
+
+  /* --- Hours table ----------------------------------------------------- */
+
+  .hours {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .hours th,
+  .hours td {
+    text-align: left;
+    padding-block: 0.85rem;
+    border-bottom: 1px solid var(--color-hairline);
+    font-size: 0.98rem;
+  }
+
+  .hours th {
+    font-weight: 500;
+    color: color-mix(in srgb, var(--color-cream) 80%, transparent);
+  }
+
+  .hours td {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-cream);
+  }
+
+  .hours tr[data-today="true"] th,
+  .hours tr[data-today="true"] td {
+    color: var(--color-brass-lit);
+    font-weight: 600;
+  }
+
+  /* --- Event row ------------------------------------------------------- */
+
+  .event {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem 2.5rem;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--color-hairline);
+  }
+
+  @media (min-width: 44rem) {
+    .event {
+      grid-template-columns: 7.5rem minmax(0, 1fr);
+    }
+  }
+
+  .event:last-child {
+    border-bottom: 1px solid var(--color-hairline);
+  }
+
+  .event-date {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--color-brass-lit);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .event-name {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    line-height: 1.15;
+  }
+
+  .event-time {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-top: 0.4rem;
+  }
+
+  /* --- Chips ----------------------------------------------------------- */
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .chip {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-hairline);
+    font-size: 0.82rem;
+    color: color-mix(in srgb, var(--color-cream) 82%, transparent);
+    background: var(--color-ink-2);
+  }
+
+  /* --- Figures --------------------------------------------------------- */
+
+  .figure {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .figure img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  /* A brass frame offset behind the image. Pure decoration, and the reason the
+     photographs stop looking like stock. */
+  .figure-framed {
+    position: relative;
+  }
+
+  .figure-framed::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid color-mix(in srgb, var(--color-brass) 40%, transparent);
+    translate: 0.85rem 0.85rem;
+    pointer-events: none;
+  }
+
+  /* --- Full-bleed claret band ------------------------------------------ */
+
+  .band-claret {
+    background:
+      linear-gradient(
+        to bottom,
+        var(--color-claret-deep),
+        color-mix(in srgb, var(--color-claret-deep) 55%, var(--color-ink))
+      );
+    border-block: 1px solid color-mix(in srgb, var(--color-brass) 25%, transparent);
+  }
+
+  .band-photo {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .band-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+
+  .band-photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      to right,
+      var(--color-ink) 8%,
+      rgb(10 9 11 / 0.86) 45%,
+      rgb(64 17 31 / 0.7) 100%
+    );
+  }
+
+  /* --- Footer ---------------------------------------------------------- */
+
+  .footer {
+    border-top: 1px solid var(--color-hairline);
+    background: var(--color-ink);
+  }
+
+  .footer a:hover {
+    color: var(--color-brass-lit);
+  }
+
+  .footer-cols {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 48rem) {
+    .footer-cols {
+      grid-template-columns: 1.4fr 1fr 1fr;
+    }
+  }
+
+  .footer h3 {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-brass);
+    margin-bottom: 1rem;
+  }
+
+  .footer p,
+  .footer li {
+    color: color-mix(in srgb, var(--color-cream) 70%, transparent);
+    font-size: 0.95rem;
+  }
+
+  .footer li + li {
+    margin-top: 0.4rem;
+  }
+
+  .colophon {
+    border-top: 1px solid var(--color-hairline);
+    font-size: 0.78rem;
+    color: color-mix(in srgb, var(--color-muted) 80%, transparent);
+  }
+
+  /* --- Utility --------------------------------------------------------- */
+
+  .stack > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .skip {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .skip:focus {
+    left: 1rem;
+    top: 1rem;
+    z-index: 100;
+    background: var(--color-brass);
+    color: var(--color-ink);
+    padding: 0.7rem 1.2rem;
+    font-weight: 600;
+  }
+}

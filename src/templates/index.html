@@ -1,0 +1,190 @@
+{% extends "page-base.html" %}
+
+{%- block header %}
+{#- The homepage puts the bar over the photograph rather than on a solid strip. -#}
+{%- let v = site.venue %}
+<header class="topbar">
+  <div class="shell topbar-row">
+    <a href="/" class="mark" aria-label="{{ v.name }}, home">
+      {% include "crest.html" %}
+      <span>
+        <span class="mark-name">{{ v.name }}</span><br />
+        <span class="mark-sub">{{ v.locality }} E15</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      {%- for item in nav %}
+      <a href="{{ item.href }}"{% if item.current %} aria-current="page"{% endif %}>{{ item.label }}</a>
+      {%- endfor %}
+    </nav>
+    <a class="btn" href="tel:{{ v.phone_link }}">Call the bar</a>
+  </div>
+</header>
+{%- endblock %}
+
+{% block content %}
+{%- let v = site.venue %}
+{%- let crowd = asset("img/crowd.jpg") %}
+{%- let crowd_small = asset("img/crowd-960.jpg") %}
+{%- let pour = asset("img/pour.jpg") %}
+{%- let pour_small = asset("img/pour-500.jpg") %}
+{%- let taps = asset("img/taps.jpg") %}
+
+<section class="hero">
+  <div class="hero-media">
+    <img src="{{ crowd }}" srcset="{{ crowd_small }} 960w, {{ crowd }} 1920w"
+         sizes="100vw" alt="A full house at the Queen's Head, glasses up"
+         width="1920" height="500" fetchpriority="high" />
+  </div>
+  <div class="hero-wash"></div>
+
+  <div class="shell hero-inner">
+    <p class="eyebrow">Stratford &middot; East London &middot; Est. on West Ham Lane</p>
+    <h1 class="display">The Queen's<br />Head</h1>
+    <p class="lede" style="max-width: 36rem; margin-top: 1.75rem">{{ v.tagline }}</p>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; margin-top: 2.25rem">
+      <span class="pill" data-pill
+        {%- for h in site.hours %} data-open-{{ loop.index0 }}="{{ h.open_display() }}" data-close-{{ loop.index0 }}="{{ h.close_display() }}"{% endfor %}>
+        <span class="pill-dot"></span>
+        <span data-pill-text>Open from 11am, every day</span>
+      </span>
+      <a class="btn btn-solid" href="/find-us">Find us</a>
+      <a class="btn" href="/whats-on">What's on</a>
+    </div>
+  </div>
+</section>
+
+<section class="shell band">
+  <div class="grid-2">
+    <div>
+      <p class="eyebrow">The room</p>
+      <h2 class="title">{{ site.about.heading }}</h2>
+      <div class="prose-warm" style="margin-top: 1.75rem">
+        {%- for para in site.about.body %}
+        <p>{{ para }}</p>
+        {%- endfor %}
+      </div>
+    </div>
+    <div class="figure figure-framed">
+      <img src="{{ pour }}" srcset="{{ pour_small }} 500w, {{ pour }} 1000w"
+           sizes="(min-width: 56rem) 36rem, 92vw"
+           alt="A pint being poured behind the bar at the Queen's Head"
+           width="1000" height="1000" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<section class="band-photo band">
+  <img src="{{ crowd }}" alt="" aria-hidden="true" width="1920" height="500" loading="lazy" />
+  <div class="shell">
+    <div style="max-width: 40rem">
+      <p class="eyebrow">Matchday</p>
+      <h2 class="title">{{ site.matchday.heading }}</h2>
+      <p class="lede" style="margin-top: 1.5rem">{{ site.matchday.lede }}</p>
+      <p class="prose-warm" style="margin-top: 1.25rem"><span>{{ site.matchday.body }}</span></p>
+      <p class="chips" style="margin-top: 2rem">
+        <span class="chip">{{ site.matchday.walk }}</span>
+        <span class="chip">Doors 11am</span>
+        <span class="chip">Sky &amp; TNT</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="shell band">
+  <p class="eyebrow">{{ site.bar.heading }}</p>
+  <h2 class="title" style="max-width: 22ch">What's coming out of the taps</h2>
+  <p class="lede" style="max-width: 44rem; margin-top: 1.25rem">{{ site.bar.note }}</p>
+
+  <div style="margin-top: 3rem">
+    {%- for tap in site.bar.taps %}
+    <div class="tap">
+      <div>
+        <span class="tap-name">{{ tap.name }}</span>
+        <span class="tap-style">{{ tap.style }}</span>
+      </div>
+      <p class="tap-note">{{ tap.note }}</p>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<hr class="rule" />
+
+<section class="shell band">
+  <p class="eyebrow">Every week</p>
+  <h2 class="title">Salsa, strings and the dartboard</h2>
+  <div class="grid-3" style="margin-top: 3rem">
+    {%- for r in site.regulars %}
+    <article class="card">
+      <p class="card-meta">{{ r.when }} &middot; {{ r.time }}</p>
+      <h3 class="card-title">{{ r.name }}</h3>
+      <p>{{ r.blurb }}</p>
+    </article>
+    {%- endfor %}
+  </div>
+
+  {%- if !upcoming.is_empty() %}
+  <div style="margin-top: 4rem">
+    <p class="eyebrow">Coming up</p>
+    {%- for u in upcoming %}
+    <div class="event">
+      <time class="event-date" datetime="{{ u.iso }}">{{ u.label }}</time>
+      <div>
+        <h3 class="event-name">{{ u.event.name }}</h3>
+        <p class="event-time">{{ u.event.time }}</p>
+        <p style="margin-top: 0.6rem; color: color-mix(in srgb, #f6f1e7 72%, transparent)">{{ u.event.blurb }}</p>
+      </div>
+    </div>
+    {%- endfor %}
+    <p style="margin-top: 2rem"><a class="btn" href="/whats-on">Everything that's on</a></p>
+  </div>
+  {%- endif %}
+</section>
+
+<section class="band-claret band">
+  <div class="shell">
+    <div class="grid-2">
+      <div>
+        <p class="eyebrow">Sport</p>
+        <h2 class="title">{{ site.sport.heading }}</h2>
+        <p class="lede" style="margin-top: 1.5rem">{{ site.sport.lede }}</p>
+        <p style="margin-top: 2rem"><a class="btn" href="/sport">What we're showing</a></p>
+      </div>
+      <div class="chips">
+        {%- for c in site.sport.competitions %}
+        <span class="chip">{{ c }}</span>
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shell band">
+  <div class="grid-2">
+    <div>
+      <p class="eyebrow">{{ site.travel.heading }}</p>
+      <h2 class="title">{{ v.street }}<br />{{ v.postcode }}</h2>
+      <p class="lede" style="margin-top: 1.5rem">{{ site.travel.lede }}</p>
+      <p style="margin-top: 2rem; display: flex; gap: 0.9rem; flex-wrap: wrap">
+        <a class="btn btn-solid" href="{{ v.maps_url() }}" target="_blank" rel="noopener">Open in Maps</a>
+        <a class="btn" href="/find-us">Getting here</a>
+      </p>
+    </div>
+    <div>
+      <table class="hours">
+        <caption class="eyebrow" style="text-align: left">Opening hours</caption>
+        <tbody>
+          {%- for h in site.hours %}
+          <tr data-day="{{ loop.index0 }}">
+            <th scope="row">{{ h.day }}</th>
+            <td>{{ h.open_display() }} – {{ h.close_display() }}</td>
+          </tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock %}

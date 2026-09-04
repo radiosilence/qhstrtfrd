@@ -1,0 +1,11 @@
+[tools]
+# The generator. `task check` runs rustfmt and clippy, which the minimal profile
+# leaves out — a laptop tends to have them from rustup already, a clean runner does not.
+rust = { version = "1", components = "rustfmt,clippy" }
+task = "latest"
+# Tailwind is the only JavaScript in the build — its compiler is TypeScript, and
+# Oxide is only the scanner — so it arrives as a pinned tool rather than as a package
+# manifest and a node_modules tree.
+"npm:@tailwindcss/cli" = "4"
+# Used by the deploy task; pinned here so CI gets it from the same place as a laptop.
+gh = "latest"

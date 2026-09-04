@@ -1,0 +1,109 @@
+{% extends "page-base.html" %}
+
+{%- block schema %}
+{%- if !upcoming.is_empty() %}
+{%- let v = site.venue %}
+<script type="application/ld+json">
+[
+  {%- for u in upcoming %}
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "{{ u.event.name }}",
+    "startDate": "{{ u.iso }}",
+    "description": "{{ u.event.blurb }}",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "url": "{{ v.origin }}/whats-on",
+    "location": { "@id": "{{ v.origin }}/#pub" },
+    "organizer": { "@id": "{{ v.origin }}/#pub" },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP",
+      "availability": "https://schema.org/InStock",
+      "url": "{{ v.origin }}/whats-on"
+    }
+  }{% if !loop.last %},{% endif %}
+  {%- endfor %}
+]
+</script>
+{%- endif %}
+{%- endblock %}
+
+{% block content %}
+{%- let pour = asset("img/pour.jpg") %}
+
+<section class="shell band">
+  <p class="eyebrow">What's on</p>
+  <h1 class="display" style="font-size: var(--text-title)">Something on,<br />most nights</h1>
+  <p class="lede" style="max-width: 42rem; margin-top: 1.75rem">
+    No cover charge, no guest list, no tickets to lose. Turn up, get a drink, find a seat if you're early enough.
+  </p>
+</section>
+
+<hr class="rule" />
+
+<section class="shell band">
+  <p class="eyebrow">Every week</p>
+  <h2 class="title">The regulars</h2>
+  <div class="grid-3" style="margin-top: 3rem">
+    {%- for r in site.regulars %}
+    <article class="card">
+      <p class="card-meta">{{ r.when }} &middot; {{ r.time }}</p>
+      <h3 class="card-title">{{ r.name }}</h3>
+      <p>{{ r.blurb }}</p>
+    </article>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="band-claret band">
+  <div class="shell">
+    <p class="eyebrow">Coming up</p>
+    <h2 class="title">In the diary</h2>
+    {%- if upcoming.is_empty() %}
+    <p class="lede" style="margin-top: 2rem; max-width: 40rem">
+      Nothing booked in beyond the weekly lot above — which happens, and is no bad thing.
+      The bar is open, the sport is on, and the board is free. Give us a ring on
+      <a href="tel:{{ site.venue.phone_link }}" style="border-bottom: 1px solid var(--color-brass)">{{ site.venue.phone_display }}</a>
+      if you want to put something on yourself.
+    </p>
+    {%- else %}
+    <div style="margin-top: 2.5rem">
+      {%- for u in upcoming %}
+      <div class="event">
+        <time class="event-date" datetime="{{ u.iso }}">{{ u.label }}</time>
+        <div>
+          <h3 class="event-name">{{ u.event.name }}</h3>
+          <p class="event-time">{{ u.event.time }}</p>
+          <p style="margin-top: 0.6rem; color: color-mix(in srgb, #f6f1e7 74%, transparent)">{{ u.event.blurb }}</p>
+        </div>
+      </div>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+  </div>
+</section>
+
+<section class="shell band">
+  <div class="grid-2">
+    <div class="figure figure-framed">
+      <img src="{{ pour }}" alt="A pint being poured at the Queen's Head"
+           width="1000" height="1000" loading="lazy" />
+    </div>
+    <div>
+      <p class="eyebrow">Put something on</p>
+      <h2 class="title">Birthdays, wakes, send-offs</h2>
+      <p class="prose-warm" style="margin-top: 1.5rem">
+        <span>The back room takes a crowd and we've hosted a lot of them — birthdays, christenings,
+        leaving dos, and more than one send-off done properly. No hire fee, no minimum spend, no
+        forms. Ring the bar, tell us the day, and we'll sort the rest between us.</span>
+      </p>
+      <p style="margin-top: 2rem">
+        <a class="btn btn-solid" href="tel:{{ site.venue.phone_link }}">{{ site.venue.phone_display }}</a>
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

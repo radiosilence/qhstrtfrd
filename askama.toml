@@ -1,0 +1,4 @@
+# Templates stay where the site keeps them rather than in Askama's default
+# `templates/`, so `src/` remains the one place the site is described.
+[general]
+dirs = ["src/templates"]

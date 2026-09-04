@@ -1,0 +1,261 @@
+{#
+  Values used inside attributes are bound first: an Askama string literal has to
+  use double quotes, and nesting those inside a double-quoted attribute ends the
+  attribute early as far as any HTML formatter is concerned.
+#}
+{%- let stylesheet = asset("style.css") %}
+{%- let font_display = asset("fraunces.woff2") %}
+{%- let font_sans = asset("instrument-sans.woff2") %}
+{%- let icon_svg = asset("favicon.svg") %}
+{%- let touch_icon = asset("apple-touch-icon.png") %}
+{%- let manifest = asset("manifest.json") %}
+{%- let v = site.venue %}
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{{ meta.title }}</title>
+    <meta name="description" content="{{ meta.description }}" />
+    <link rel="canonical" href="{{ meta.canonical }}" />
+
+    <meta name="theme-color" content="#40111f" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="application-name" content="{{ v.short_name }}" />
+    <meta name="apple-mobile-web-app-title" content="Queen's Head" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    {# Geo tags. Old, but still read by a handful of local-search crawlers, and
+       they cost four lines. #}
+    <meta name="geo.region" content="GB-NWM" />
+    <meta name="geo.placename" content="{{ v.locality }}, {{ v.city }}" />
+    <meta name="geo.position" content="{{ v.latitude }};{{ v.longitude }}" />
+    <meta name="ICBM" content="{{ v.latitude }}, {{ v.longitude }}" />
+
+    <meta property="og:type" content="business.business" />
+    <meta property="og:site_name" content="{{ v.name }}" />
+    <meta property="og:title" content="{{ meta.heading }} — {{ v.name }}" />
+    <meta property="og:description" content="{{ meta.description }}" />
+    <meta property="og:url" content="{{ meta.canonical }}" />
+    <meta property="og:image" content="{{ meta.image }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="{{ meta.image_alt }}" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="business:contact_data:street_address" content="{{ v.street }}" />
+    <meta property="business:contact_data:locality" content="{{ v.locality }}" />
+    <meta property="business:contact_data:postal_code" content="{{ v.postcode }}" />
+    <meta property="business:contact_data:country_name" content="United Kingdom" />
+    <meta property="business:contact_data:phone_number" content="{{ v.phone_link }}" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ meta.heading }} — {{ v.name }}" />
+    <meta name="twitter:description" content="{{ meta.description }}" />
+    <meta name="twitter:image" content="{{ meta.image }}" />
+    <meta name="twitter:image:alt" content="{{ meta.image_alt }}" />
+
+    <link rel="stylesheet" href="{{ stylesheet }}" />
+    <link rel="preload" href="{{ font_display }}" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="{{ font_sans }}" as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="{{ icon_svg }}" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ touch_icon }}" />
+    <link rel="manifest" href="{{ manifest }}" />
+
+    {#
+      One BarOrPub, on every page, describing the venue rather than the page.
+      This is what earns the hours panel, the map pin and the phone button in a
+      Google result — the pubco's own page ships a broken `openingHours` string
+      and no geo block at all.
+    #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BarOrPub",
+      "@id": "{{ v.origin }}/#pub",
+      "name": "{{ v.name }}",
+      "alternateName": "{{ v.short_name }}",
+      "description": "{{ v.summary }}",
+      "url": "{{ v.origin }}/",
+      "telephone": "{{ v.phone_link }}",
+      "image": "{{ meta.image }}",
+      "logo": "{{ self.absolute(icon_svg.as_ref()) }}",
+      "priceRange": "££",
+      "currenciesAccepted": "GBP",
+      "paymentAccepted": "Cash, Credit Card, Debit Card",
+      "publicAccess": true,
+      "isAccessibleForFree": true,
+      "smokingAllowed": false,
+      "servesCuisine": [],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "{{ v.street }}",
+        "addressLocality": "{{ v.locality }}",
+        "addressRegion": "{{ v.region }}",
+        "postalCode": "{{ v.postcode }}",
+        "addressCountry": "{{ v.country }}"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": {{ v.latitude }},
+        "longitude": {{ v.longitude }}
+      },
+      "hasMap": "{{ v.maps_url() }}",
+      "sameAs": ["{{ v.facebook }}", "{{ v.instagram }}"],
+      "openingHoursSpecification": [
+        {%- for h in site.hours %}
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "https://schema.org/{{ h.day }}",
+          "opens": "{{ h.open }}",
+          "closes": "{{ h.close }}"
+        }{% if !loop.last %},{% endif %}
+        {%- endfor %}
+      ],
+      "amenityFeature": [
+        {%- for f in site.facilities %}
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "{{ f.name }}",
+          "value": true
+        }{% if !loop.last %},{% endif %}
+        {%- endfor %}
+      ],
+      "publicTransportInformation": "Stratford station (Central, Jubilee, Elizabeth line, DLR, Overground) is 350m away.",
+      "areaServed": {
+        "@type": "City",
+        "name": "London"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "{{ v.origin }}/#website",
+      "url": "{{ v.origin }}/",
+      "name": "{{ v.name }}",
+      "inLanguage": "en-GB",
+      "publisher": { "@id": "{{ v.origin }}/#pub" }
+    }
+    </script>
+
+    {% block schema %}{% endblock %}
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    {% block header %}
+    <header class="topbar topbar-solid">
+      <div class="shell topbar-row">
+        <a href="/" class="mark" aria-label="{{ v.name }}, home">
+          {% include "crest.html" %}
+          <span>
+            <span class="mark-name">{{ v.name }}</span><br />
+            <span class="mark-sub">{{ v.locality }} E15</span>
+          </span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          {%- for item in nav %}
+          <a href="{{ item.href }}"{% if item.current %} aria-current="page"{% endif %}>{{ item.label }}</a>
+          {%- endfor %}
+        </nav>
+        <a class="btn" href="tel:{{ v.phone_link }}">Call the bar</a>
+      </div>
+    </header>
+    {% endblock %}
+
+    <main id="main">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+      <div class="shell band-tight">
+        <div class="footer-cols">
+          <div>
+            <h3>{{ v.name }}</h3>
+            <p>{{ v.tagline }}</p>
+            <p style="margin-top: 1rem">
+              <a href="{{ v.maps_url() }}" target="_blank" rel="noopener">
+                {{ v.street }}<br />{{ v.locality }}, {{ v.city }} {{ v.postcode }}
+              </a>
+            </p>
+            <p style="margin-top: 0.6rem">
+              <a href="tel:{{ v.phone_link }}">{{ v.phone_display }}</a>
+            </p>
+          </div>
+
+          <div>
+            <h3>Opening hours</h3>
+            <ul style="list-style: none; padding: 0; margin: 0">
+              {%- for h in site.hours %}
+              <li>{{ h.day }} &middot; {{ h.open_display() }}–{{ h.close_display() }}</li>
+              {%- endfor %}
+            </ul>
+          </div>
+
+          <div>
+            <h3>Elsewhere</h3>
+            <ul style="list-style: none; padding: 0; margin: 0">
+              <li><a href="{{ v.facebook }}" target="_blank" rel="noopener">Facebook</a></li>
+              <li><a href="{{ v.instagram }}" target="_blank" rel="noopener">Instagram</a></li>
+              {%- for item in nav %}
+              <li><a href="{{ item.href }}">{{ item.label }}</a></li>
+              {%- endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="shell colophon" style="padding-block: 1.5rem">
+        <p>&copy; {{ v.name }}, {{ v.street }}, {{ v.locality }} {{ v.postcode }}. Please drink responsibly.</p>
+      </div>
+    </footer>
+
+    {#
+      The only script on the site, and it only ever *adds* something: the hours
+      table and the "open from 11am" pill are both correct with JavaScript off.
+      This turns the pill into "Open now" or "Closed" and marks today's row.
+
+      There is no native element for "is it open right now", which is the one
+      question a pub website exists to answer — so it is worth thirty lines.
+    #}
+    <script>
+      (function () {
+        var hours = [
+          {%- for h in site.hours %}
+          { open: "{{ h.open }}", close: "{{ h.close }}" }{% if !loop.last %},{% endif %}
+          {%- endfor %}
+        ];
+        // Written in London time wherever the reader happens to be: a pub's
+        // hours are a fact about the pub, not about the visitor's timezone.
+        var now = new Date(
+          new Date().toLocaleString("en-GB", { timeZone: "Europe/London" })
+        );
+        // The array starts on Monday; getDay() starts on Sunday.
+        var index = (now.getDay() + 6) % 7;
+        var today = hours[index];
+        var mins = now.getHours() * 60 + now.getMinutes();
+        var toMins = function (s) {
+          var p = s.split(":");
+          return parseInt(p[0], 10) * 60 + parseInt(p[1], 10);
+        };
+        var open = mins >= toMins(today.open) && mins < toMins(today.close);
+
+        var pill = document.querySelector("[data-pill]");
+        if (pill) {
+          pill.setAttribute("data-state", open ? "open" : "closed");
+          pill.querySelector("[data-pill-text]").textContent = open
+            ? "Open now · until " + pill.getAttribute("data-close-" + index)
+            : "Closed · opens " + pill.getAttribute("data-open-" + index);
+        }
+
+        var row = document.querySelector('[data-day="' + index + '"]');
+        if (row) row.setAttribute("data-today", "true");
+      })();
+    </script>
+  </body>
+</html>

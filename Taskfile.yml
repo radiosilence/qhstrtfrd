@@ -1,0 +1,119 @@
+version: "3"
+
+vars:
+  DIST: dist
+  # Tailwind's output is an input to generate, which rewrites it; keeping it out of
+  # dist gives that rewrite a fixed input and leaves dist owned by generate alone.
+  BUILD: .build
+  IMAGE: ghcr.io/radiosilence/queenshead
+  PLATFORMS: linux/amd64,linux/arm64
+  PROFILE: '{{if .CI}}--release{{end}}'
+
+tasks:
+  default:
+    cmd: task --list
+    silent: true
+
+  build:
+    desc: Generate the whole site into dist/
+    deps: [generate]
+
+  generate:
+    desc: Render every page to dist/
+    deps: [css]
+    sources:
+      - Cargo.toml
+      - Cargo.lock
+      - generator/**/*.rs
+      - src/content/**/*.toml
+      - src/static/**/*
+      - src/templates/**/*.html
+      - "{{.BUILD}}/style.css"
+    generates:
+      - "{{.DIST}}/**/index.html"
+    cmd: cargo run {{.PROFILE}} --quiet --bin queenshead
+
+  css:
+    desc: Compile Tailwind
+    run: once
+    sources:
+      - src/styles/**/*.css
+      - src/templates/**/*.html
+    generates:
+      - "{{.BUILD}}/style.css"
+    cmd: tailwindcss --input src/styles/app.css --output {{.BUILD}}/style.css --minify
+
+  dev:
+    desc: Rebuild on change, serve on :3000
+    deps: [watch, serve]
+
+  watch:
+    internal: true
+    cmd: task --watch build
+
+  # The same server the image runs, so dev resolves URLs exactly as production does.
+  # --dev drops the year-long caching, so a rebuild is picked up.
+  serve:
+    internal: true
+    preconditions:
+      - sh: command -v nano-web
+        msg: |
+          nano-web is not on PATH. It serves dist/ for `task dev` and is not part of
+          the build toolchain, so it is not pinned in mise.toml.
+          https://github.com/radiosilence/nano-web
+    cmd: nano-web serve {{.DIST}} --port 3000 --dev
+
+  clean:
+    desc: Remove generated output
+    cmd: rm -rf {{.DIST}} {{.BUILD}} .task target
+
+  lint:
+    cmd: cargo clippy --all-targets -- -D warnings
+
+  format:
+    cmd: cargo fmt --all
+
+  format:check:
+    cmd: cargo fmt --all --check
+
+  test:
+    cmd: cargo test
+
+  check:
+    desc: Lint, formatting and tests
+    deps: [lint, format:check, test]
+
+  ci:
+    desc: Everything CI verifies — checks, then a full build
+    cmds:
+      - task: check
+      - task: build
+
+  docker:build:
+    desc: Build the container image — PUSH=true to push, LATEST=true to also tag latest
+    deps: [build]
+    vars:
+      SHA:
+        sh: "{{if .SHA}}echo {{.SHA}}{{else}}git rev-parse HEAD{{end}}"
+      TAG: sha-{{trunc 7 .SHA}}
+      BUILT_AT:
+        sh: date -u +%Y-%m-%dT%H:%M:%SZ
+    cmd: >-
+      docker buildx build .
+      {{if eq .PUSH "true"}}--platform {{.PLATFORMS}}{{end}}
+      --tag {{.IMAGE}}:{{.TAG}}
+      {{if eq .LATEST "true"}}--tag {{.IMAGE}}:latest{{end}}
+      --label org.opencontainers.image.revision={{.SHA}}
+      --label org.opencontainers.image.created={{.BUILT_AT}}
+      --label org.opencontainers.image.version={{.TAG}}
+      {{if .CACHE_FROM}}--cache-from {{.CACHE_FROM}}{{end}}
+      {{if .CACHE_TO}}--cache-to {{.CACHE_TO}}{{end}}
+      {{if eq .PUSH "true"}}--push{{else}}--load{{end}}
+
+  # Asks the deployment to update itself rather than reaching in and editing it.
+  # jaritanet's updater resolves this branch's head to the tag docker:build pushed.
+  deploy:update:
+    desc: Ask the jaritanet deployment to pick up the newest build
+    cmds:
+      - gh workflow run update-apps.yml --repo radiosilence/jaritanet
+      - echo "asked jaritanet to update; it resolves this branch's head itself"

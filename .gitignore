@@ -1,0 +1,5 @@
+/dist
+/.build
+/.task
+/target
+/node_modules

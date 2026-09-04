@@ -1,0 +1,116 @@
+name: Build and Deploy Queenshead
+
+# This workflow supplies an environment — a checkout, a toolchain, registry
+# credentials and a build cache — and nothing else. Every step of substance is a
+# Taskfile target that runs identically on a laptop.
+
+permissions:
+  contents: read
+  packages: write
+
+on:
+  # Events are filtered against the build date, so a site that is never rebuilt
+  # keeps advertising last month's quiz. 04:00 UTC is after closing and before
+  # anybody looks.
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "src/**"
+      - "generator/**"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - "askama.toml"
+      - "Dockerfile"
+      - "Taskfile.yml"
+      - "mise.toml"
+      - .github/workflows/publish-web-container.yml
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # mise.toml is the single source of truth for rust, task, tailwind and gh.
+      - name: Install toolchain
+        uses: jdx/mise-action@9e7f7633ff6f6d6048a9418a68d48f288f50eb14 # v4.2.3
+
+      # Compiling from scratch on every run is the one thing a laptop gets for
+      # free and a runner does not, so it arrives as cache rather than as
+      # workflow logic. rust-cache rather than a hand-rolled actions/cache: it
+      # keys on the rustc version as well as Cargo.lock, and prunes target/ to
+      # what the current build actually references — a raw `path: target` grows
+      # without bound as dependencies come and go.
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
+        with:
+          # Branch-scoped caches aren't readable from other branches, so a PR
+          # saving here only evicts the main entry every PR restores from.
+          save-if: ${{ github.ref == 'refs/heads/main' }}
+
+      - name: Lint, test and build
+        run: task ci
+
+      - name: Upload built site
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: dist
+          path: dist
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c # v4.2.0
+
+      # Both this and PUSH below key on the ref rather than the event: the trigger list
+      # is what currently makes "not a pull_request" mean main, and a future
+      # workflow_dispatch or added branch would quietly start publishing.
+      - name: Login to GitHub Container Registry
+        if: github.ref == 'refs/heads/main'
+        uses: docker/login-action@abd2ef45e78c5afb21d64d4ca52ee8550d9572c7 # v4.5.1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # No cache is configured: the image is a FROM, a LABEL and a COPY of dist/, whose
+      # content changes on every build. Set CACHE_FROM/CACHE_TO here if it ever grows a
+      # build stage worth caching — the Taskfile already reads them.
+      - name: Build container image
+        run: >-
+          task docker:build
+          SHA=${{ github.sha }}
+          PUSH=${{ github.ref == 'refs/heads/main' }}
+          LATEST=${{ github.ref == 'refs/heads/main' }}
+
+  update-deployment:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+
+    # Serialised, and a superseded run cancelled rather than queued: two of these
+    # would ask the deployment to update twice for the same head, and the second
+    # answer would be the same as the first.
+    concurrency:
+      group: deploy-${{ github.ref }}
+      cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install toolchain
+        uses: jdx/mise-action@9e7f7633ff6f6d6048a9418a68d48f288f50eb14 # v4.2.3
+
+      # No git identity and no credential helper: this triggers a workflow, it
+      # does not commit. DEPLOYMENT_PAT needs `actions: write` on the deployment
+      # repository and no longer needs `contents: write`.
+      - name: Ask the deployment to pick this up
+        env:
+          GH_TOKEN: ${{ secrets.DEPLOYMENT_PAT }}
+        run: task deploy:update
