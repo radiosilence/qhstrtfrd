@@ -317,39 +317,64 @@ a = "Eleven in the morning, every day. Last orders are at eleven at night Monday
 # which is about as solid as local history gets.
 
 [history]
-heading = "Older than the skyline"
-lede = "Nobody found a founding date, so this does not claim one. What follows is what can actually be shown."
-note = "If you know more about this pub's history — and somebody drinking in it certainly does — the bar would like to hear it."
+heading = "The lane, and the pub on it"
+lede = "The pub cannot be dated. The ground it stands on can, and the story attached to the name over the door is a genuinely good one."
+note = "None of the older history below is a claim about this pub — it is the story of the place and the name. If you know when the Queen's Head actually opened, the bar would like to hear it, because nobody writing this could find out."
+
+# The area. Every entry checked rather than remembered; this is the romance,
+# and it is only worth having because it is true.
+
+[[history.moments]]
+year = "1067"
+approx = false
+body = "The name is first written down as Stratford — Old English for a ford on a Roman road. The road ran from Aldgate out to Romford, Chelmsford and Colchester, and somewhere just north of what is now Stratford High Street it crossed the River Lea. The whole place is named after the act of getting across the water."
+
+[[history.moments]]
+year = "1135"
+approx = false
+body = "Cistercian monks found Stratford Langthorne Abbey. It becomes one of the largest and wealthiest monasteries in England — 1,500 acres here and twenty manors scattered across Essex. Henry VIII dissolves it in 1538, and the people living nearby carry the stone home and build with it. There is a good chance parts of that abbey are still standing around here, in walls nobody thinks twice about."
 
 [[history.moments]]
 year = "1839"
 approx = false
-body = "The Eastern Counties Railway reaches Stratford and turns a village on the edge of Essex into a junction. The population goes up and the pubs go up with it. Stratford at this point is a ward of the parish of West Ham — which is where the lane outside gets its name, long before it belonged to a football club."
+body = "Stratford station opens on 20 June, on the Eastern Counties Railway. A village on the edge of Essex becomes a junction more or less overnight, and the people arrive who need somewhere to drink."
 
 [[history.moments]]
-year = "1965"
+year = "1847"
 approx = false
-body = "West Ham and East Ham are abolished as boroughs and folded into the new London Borough of Newham. Stratford stops being Essex and starts being London, on paper at least."
+body = "The Great Eastern Railway works open just north of here and eventually employ over 2,500 people. Before they close in 1991 they build 1,682 locomotives, 5,500 carriages and 33,000 goods wagons. For a century and a half this is a place that makes things out of iron."
+
+[[history.moments]]
+year = "1895"
+approx = false
+body = "Down the river at Thames Ironworks — the largest and last surviving shipbuilder on the Thames — a foreman named Dave Taylor and the owner, Arnold Hills, start a works football team. Thames Ironworks FC. The hammers that ended up crossed on the badge are riveting hammers, the tools the men used to fix iron plates onto ships."
+
+[[history.moments]]
+year = "1900"
+approx = false
+body = "On 5 July the club is relaunched as West Ham United, taking the name of the district it played in — the same parish name carried by the lane this pub stands on. The crossed hammers are not only the club's: they sit in the coat of arms of the old County Borough of West Ham, and in the London Borough of Newham's arms today. The hammers belong to the borough as much as the team."
+
+[[history.moments]]
+year = "2016"
+approx = false
+body = "After 112 years at the Boleyn Ground, West Ham move to the London Stadium — back into Stratford, a mile and a bit from a pub already standing on a lane that had been carrying the name West Ham the whole time."
+
+# The pub itself. Thinner, hedged, and clearly separated from the above.
 
 [[history.moments]]
 year = "1985"
 approx = false
-body = "The earliest hard evidence of this pub that turned up: a photograph of the Queen's Head on West Ham Lane, held in CAMRA's archive. Another follows in 1987. It was plainly not new then, but how much older is not something any source consulted would say."
+body = "The earliest hard evidence of this pub that turned up anywhere: a photograph of the Queen's Head on West Ham Lane in CAMRA's archive. Another follows in 1987. It was plainly not new then, but no source consulted would say how much older — so this page does not guess."
 
 [[history.moments]]
 year = "Later"
 approx = true
-body = "At some point the pub trades as Le Pub, a name CAMRA still records as a former one. It did not stick, and the Queen's Head came back."
-
-[[history.moments]]
-year = "2012"
-approx = false
-body = "The Olympics arrive next door. Stratford gets Westfield, a park, and a stadium; the neighbourhood is rebuilt around the pub rather than including it. In 2016 that stadium becomes West Ham's home ground, a mile and a bit up the road from a pub already standing on the lane with the same name."
+body = "At some point it trades as Le Pub, a name CAMRA still records as a former one. It did not stick. The Queen's Head came back, as these things tend to."
 
 [[history.moments]]
 year = "2023"
 approx = false
-body = "Craft Union spends over £100,000 on a refit — furniture, fittings, carpets, lighting and six HD screens — and puts up a new sign carrying an image of Queen Elizabeth II. The reason given at the time was that the changes should reflect the kind of venue it is, and the East End itself."
+body = "Craft Union spends over £100,000 on a refit — furniture, fittings, carpets, lighting and six HD screens — and puts up a new sign carrying an image of Queen Elizabeth II. The stated reason was that the changes should reflect the kind of venue it is, and the East End itself."
 
 # --- Sources ------------------------------------------------------------------
 # What every claim above rests on. Kept in the repository rather than on the
@@ -374,6 +399,16 @@ covers = "Irish pub with live music, Salsa Thursdays, darts and pool, no cask al
 name = "Pubs Galore"
 url = "https://www.pubsgalore.co.uk/pubs/55945/"
 covers = "The U-shaped room, chequerboard bar skirt, booths and armchairs; keg list; no hot food."
+
+[[sources]]
+name = "Wikipedia — Stratford, London"
+url = "https://en.wikipedia.org/wiki/Stratford,_London"
+covers = "The 1067 name and its meaning, the Roman road and the ford over the Lea, Stratford Langthorne Abbey (1135, Cistercian, 1,500 acres and twenty manors, dissolved 1538), Stratford station opening 20 June 1839, and the Great Eastern Railway works (1847, 2,500 staff, 1,682 locomotives, closed 1991)."
+
+[[sources]]
+name = "Wikipedia — West Ham United F.C."
+url = "https://en.wikipedia.org/wiki/West_Ham_United_F.C."
+covers = "Thames Ironworks FC founded 1895 by Dave Taylor and Arnold Hills, the crossed hammers as shipbuilders' riveting hammers, their presence in the West Ham and Newham coats of arms, the relaunch as West Ham United on 5 July 1900, the Boleyn Ground from 1904, and the move to the London Stadium in 2016."
 
 [[sources]]
 name = "TfL journey planner"
