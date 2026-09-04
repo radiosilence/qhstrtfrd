@@ -5,7 +5,7 @@ vars:
   # Tailwind's output is an input to generate, which rewrites it; keeping it out of
   # dist gives that rewrite a fixed input and leaves dist owned by generate alone.
   BUILD: .build
-  IMAGE: ghcr.io/radiosilence/queenshead
+  IMAGE: ghcr.io/radiosilence/qhstrtfrd
   PLATFORMS: linux/amd64,linux/arm64
   PROFILE: '{{if .CI}}--release{{end}}'
 
