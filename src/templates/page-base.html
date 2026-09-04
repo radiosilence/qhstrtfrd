@@ -213,7 +213,11 @@
       </div>
 
       <div class="shell colophon" style="padding-block: 1.5rem">
-        <p>&copy; {{ v.name }}, {{ v.street }}, {{ v.locality }} {{ v.postcode }}. Please drink responsibly.</p>
+        <p class="disclaimer">{{ site.disclaimer.text }}</p>
+        <p style="margin-top: 0.75rem">
+          <a href="{{ site.disclaimer.official_url }}" target="_blank" rel="noopener nofollow">{{ site.disclaimer.official_label }}</a>
+        </p>
+        <p style="margin-top: 0.75rem">{{ v.name }}, {{ v.street }}, {{ v.locality }} {{ v.postcode }}. Please drink responsibly.</p>
       </div>
     </footer>
 

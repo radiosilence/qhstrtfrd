@@ -14,6 +14,7 @@ use time::{Date, Month, Weekday, macros::format_description};
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Site {
+    pub disclaimer: Disclaimer,
     pub venue: Venue,
     pub about: About,
     pub matchday: Matchday,
@@ -37,6 +38,16 @@ pub struct Site {
     /// does not reject the block that records where all this came from.
     #[allow(dead_code)]
     pub sources: Vec<Source>,
+}
+
+/// Rendered in the footer of every page, and the reason this site is a fan
+/// site rather than something the operator's lawyers would need to think about.
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Disclaimer {
+    pub text: String,
+    pub official_label: String,
+    pub official_url: String,
 }
 
 #[derive(Deserialize)]

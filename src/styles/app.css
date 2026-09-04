@@ -1053,3 +1053,11 @@
     filter: drop-shadow(0 14px 30px rgb(0 0 0 / 0.55));
   }
 }
+
+@layer components {
+  /* Legible rather than buried. A disclaimer in 9px grey is not a disclaimer. */
+  .disclaimer {
+    max-width: 68ch;
+    color: color-mix(in srgb, var(--color-cream) 62%, transparent);
+  }
+}

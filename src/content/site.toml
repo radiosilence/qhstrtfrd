@@ -9,6 +9,18 @@
 # (hours, facilities) and CAMRA wins on anything the operator does not publish.
 # Where nothing says it, it does not go on the site.
 
+# The thing that keeps this site out of trouble.
+#
+# It is an unofficial site for a real pub, built by somebody who drinks in it.
+# The goodwill in the name belongs to the operator, not to us, so the page says
+# plainly what it is and points at the official one. That single sentence is
+# what separates "a fan site" from "a misrepresentation", which is the whole of
+# a passing-off claim.
+[disclaimer]
+text = "An unofficial site, made by locals because we like the place. Not affiliated with, endorsed by or operated by Craft Union Pub Company or Stonegate Group. Hours and details are gathered from public sources and can change — ring the bar to be sure."
+official_label = "Official Craft Union page"
+official_url = "https://www.craftunionpubs.com/queens-head-stratford"
+
 [venue]
 name = "The Queen's Head"
 short_name = "Queen's Head Stratford"
