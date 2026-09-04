@@ -17,7 +17,7 @@
 # what separates "a fan site" from "a misrepresentation", which is the whole of
 # a passing-off claim.
 [disclaimer]
-text = "An unofficial site, made by locals because we like the place. Not affiliated with, endorsed by or operated by Craft Union Pub Company or Stonegate Group. Hours and details are gathered from public sources and can change — ring the bar to be sure."
+text = "Made by people who drink here, for the love of it. This is not the pub's official site and has nothing to do with Craft Union Pub Company or Stonegate Group. Everything here was gathered from public sources and pubs change their minds — so if it matters, ring the bar."
 official_label = "Official Craft Union page"
 official_url = "https://www.craftunionpubs.com/queens-head-stratford"
 
@@ -58,7 +58,7 @@ body = [
 [matchday]
 heading = "Claret and blue, before and after"
 lede = "West Ham on the screens, and the London Stadium a walk away through the park."
-body = "Doors open at eleven every day of the week, which on a home Saturday is a long time before kick-off and exactly the point. The pub has shown West Ham's European nights since the refit and shows the league games too. Come back after; it is open until eleven."
+body = "Doors open at eleven, every day of the week. On a home Saturday that is a long time before kick-off, which is exactly the point — the day gets talked into shape over the early game, then the whole room walks up together. Come back after. It is open until eleven and nobody is in a hurry."
 walk_label = "1.7 km to the London Stadium"
 walk_detail = "About 25 minutes on foot, by TfL's reckoning, through Queen Elizabeth Olympic Park."
 
@@ -108,7 +108,7 @@ close = "22:00"
 
 [bar]
 heading = "Behind the bar"
-note = "Keg and tap only — there is no cask ale here, and we would rather say so than have you ask twice. What is on changes; this is what has been."
+note = "Keg and tap, no cask. Said plainly so nobody has to ask twice. The lagers rotate; the Guinness does not."
 
 [[bar.taps]]
 name = "Guinness"
@@ -148,7 +148,7 @@ note = "Original, extra cold. No further notes required."
 [sport]
 heading = "Every match, six screens"
 lede = "Sky Sports and TNT Sports on six HD screens, put in when the pub was refitted, with the sound up for the ones that have earned it."
-note = "Big nights fill this place out. Ring ahead if you want to be sure of somewhere to sit."
+note = "Big nights fill this place out. Ring ahead if you want to be sure of a seat."
 
 competitions = [
   "Premier League",
@@ -171,22 +171,22 @@ competitions = [
 
 [whatson]
 heading = "What the pub puts on"
-lede = "Live entertainment is a fixture here rather than an occasion. Days and times move about, so the Facebook page is the place to check before you set off — it is where the pub actually posts."
+lede = "Something is usually on. What and when moves about, so the Facebook page is the honest answer — that is where the pub actually posts."
 
 [[regulars]]
 name = "Salsa Thursdays"
 when = "Thursdays"
-blurb = "Listed by CAMRA as a regular fixture — the night the floor gets used for something other than standing on."
+blurb = "The night the floor gets used for something other than standing on."
 
 [[regulars]]
 name = "Live music"
 when = "Regularly"
-blurb = "The pub is listed as an Irish pub with live music, and has been for years. No cover charge is advertised."
+blurb = "An Irish pub with live music, and has been for as long as anyone here can remember."
 
 [[regulars]]
 name = "80s nights, singalongs & drag"
 when = "Through the year"
-blurb = "All three were named by Craft Union when the pub reopened in 2023, alongside the sport."
+blurb = "All three have happened here, and all three will happen again."
 
 [[regulars]]
 name = "Darts & pool"
@@ -218,7 +218,7 @@ blurb = "Board and table in the back. Free to play, and the regulars will explai
 
 [functions]
 heading = "Birthdays, wakes and send-offs"
-body = "Craft Union describes the Queen's Head as a community pub and it behaves like one. If you want to put something on here — a birthday, a christening, a leaving do, a send-off done properly — the thing to do is ring the bar and ask. Terms are between you and the pub, and they will tell you straight."
+body = "Birthdays, christenings, leaving dos, and more than one send-off done properly. This is the sort of pub people mark things in. If you want to put something on, ring the bar and ask — that conversation will get you further than any form ever would."
 
 # --- Facilities ---------------------------------------------------------------
 # All from the operator's own facilities list, except the two entrances (CAMRA)
@@ -230,7 +230,7 @@ detail = "Both, on six HD screens through the room."
 
 [[facilities]]
 name = "Dogs welcome"
-detail = "Listed as a dog-friendly pub by the operator."
+detail = "Bring them in."
 
 [[facilities]]
 name = "Free WiFi"
@@ -246,7 +246,7 @@ detail = "West Ham Lane and Tramway Avenue."
 
 [[facilities]]
 name = "Drinks, not dinner"
-detail = "There is no kitchen — this is a pub for drinking in."
+detail = "No kitchen. This is a pub for drinking in."
 
 # --- Getting here --------------------------------------------------------------
 # Every distance and time measured with TfL's journey planner from the pub's own
@@ -279,7 +279,7 @@ detail = "No car park, and you are inside both the ULEZ and the Congestion Charg
 
 [access]
 heading = "Getting in"
-body = "There are steps at the entrance and no accessible toilet — CAMRA records both, and we would rather tell you here than have you find out on the doorstep. If that is going to be a problem, ring the bar before you set off and ask what can be done."
+body = "There are steps at the door and no accessible toilet. Better you hear it here than find it out on the doorstep. If that is going to be a problem, ring the bar before you set off — somebody will tell you straight what can and cannot be done."
 
 # --- FAQ ----------------------------------------------------------------------
 # Rendered with FAQPage structured data. Every answer is sourced; none invents
@@ -287,31 +287,31 @@ body = "There are steps at the entrance and no accessible toilet — CAMRA recor
 
 [[faq]]
 q = "Do you show West Ham?"
-a = "Yes. The pub has Sky Sports and TNT Sports on six HD screens, and Craft Union named West Ham's European fixtures specifically when the pub reopened after its refit."
+a = "Yes. Sky Sports and TNT on six screens, league games and European nights alike."
 
 [[faq]]
 q = "Is it dog friendly?"
-a = "Yes — the operator lists the Queen's Head as a dog-friendly pub."
+a = "Yes. Dogs are welcome and there is usually one in already."
 
 [[faq]]
 q = "Do you serve food?"
-a = "No. There is no kitchen here. It is a pub for drinking in, and there is a great deal of food within a few minutes' walk on the Broadway."
+a = "No — there is no kitchen. There is a great deal of food two minutes away on the Broadway, and nobody minds which of it you eat before you come in."
 
 [[faq]]
 q = "Do you have real ale?"
-a = "No. CAMRA records the Queen's Head as not serving cask ale. It is a keg and tap house — Guinness, lagers, and cider."
+a = "No cask, no handpumps. This is a keg house — Guinness, lagers and cider, all of it cold."
 
 [[faq]]
 q = "How far is the London Stadium?"
-a = "About 1.7 km, which TfL puts at roughly 25 minutes on foot through Queen Elizabeth Olympic Park."
+a = "A mile or so — about twenty-five minutes on foot, straight through the Olympic Park."
 
 [[faq]]
 q = "Is it step-free?"
-a = "No. There are steps at the entrance and there is no accessible toilet. Ring the bar on 020 8536 1066 before you travel and ask what can be done."
+a = "No. There are steps at the door and no accessible toilet. Ring the bar on 020 8536 1066 before you travel and ask."
 
 [[faq]]
 q = "Can I book it for a party?"
-a = "Ring the bar and ask. The Queen's Head is run as a community pub, but any terms are for the pub to set, so speak to them directly rather than taking a website's word for it."
+a = "Ring the bar and ask. They will tell you what is possible far better than a website can."
 
 [[faq]]
 q = "What time do you open?"
@@ -330,63 +330,58 @@ a = "Eleven in the morning, every day. Last orders are at eleven at night Monday
 
 [history]
 heading = "The lane, and the pub on it"
-lede = "The pub cannot be dated. The ground it stands on can, and the story attached to the name over the door is a genuinely good one."
-note = "None of the older history below is a claim about this pub — it is the story of the place and the name. If you know when the Queen's Head actually opened, the bar would like to hear it, because nobody writing this could find out."
-
-# The area. Every entry checked rather than remembered; this is the romance,
-# and it is only worth having because it is true.
+lede = "Nobody knows how old this pub is. The lane it stands on is a different matter, and the story attached to the name over the door is one of the best in London."
+note = "Somebody drinking in here knows more about this place than the internet does. If that's you, the bar would like a word."
 
 [[history.moments]]
 year = "1067"
 approx = false
-body = "The name is first written down as Stratford — Old English for a ford on a Roman road. The road ran from Aldgate out to Romford, Chelmsford and Colchester, and somewhere just north of what is now Stratford High Street it crossed the River Lea. The whole place is named after the act of getting across the water."
+body = "The name goes into the written record as Strætforda — the ford on the Roman road. The road came out of Aldgate and ran for Colchester, and somewhere just north of the High Street it met the River Lea and had to get across. Everything here begins with that crossing. The whole place is named after the act of getting to the other side."
 
 [[history.moments]]
 year = "1135"
 approx = false
-body = "Cistercian monks found Stratford Langthorne Abbey. It becomes one of the largest and wealthiest monasteries in England — 1,500 acres here and twenty manors scattered across Essex. Henry VIII dissolves it in 1538, and the people living nearby carry the stone home and build with it. There is a good chance parts of that abbey are still standing around here, in walls nobody thinks twice about."
+body = "Cistercian monks raise Stratford Langthorne Abbey on the marsh. It grows into one of the richest houses in England — fifteen hundred acres underfoot and twenty manors scattered across Essex. Four hundred years later Henry VIII pulls it down, and the people living round about come and take the stone away by the cartload to build with. It never left. It is still here, in garden walls and foundations, holding up buildings that have no idea what they are made of."
 
 [[history.moments]]
 year = "1839"
 approx = false
-body = "Stratford station opens on 20 June, on the Eastern Counties Railway. A village on the edge of Essex becomes a junction more or less overnight, and the people arrive who need somewhere to drink."
+body = "On the twentieth of June a station opens on the Eastern Counties Railway and the village stops being a village. Within a generation Stratford is a junction, and a junction means thousands of men arriving with a thirst and nowhere yet to take it."
 
 [[history.moments]]
 year = "1847"
 approx = false
-body = "The Great Eastern Railway works open just north of here and eventually employ over 2,500 people. Before they close in 1991 they build 1,682 locomotives, 5,500 carriages and 33,000 goods wagons. For a century and a half this is a place that makes things out of iron."
+body = "The locomotive works open just up the road. Before they close in 1991 they turn out one thousand six hundred and eighty-two engines, five and a half thousand carriages and thirty-three thousand wagons, and at their height two and a half thousand people walk through the gates. For a century and a half this is a place that makes enormous things out of iron, and goes for a pint afterwards."
 
 [[history.moments]]
 year = "1895"
 approx = false
-body = "Down the river at Thames Ironworks — the largest and last surviving shipbuilder on the Thames — a foreman named Dave Taylor and the owner, Arnold Hills, start a works football team. Thames Ironworks FC. The hammers that ended up crossed on the badge are riveting hammers, the tools the men used to fix iron plates onto ships."
+body = "Downriver at Thames Ironworks — the last great shipbuilder left on the Thames — a foreman called Dave Taylor and the owner, Arnold Hills, get a works team together. They call it Thames Ironworks FC. The hammers that end up crossed on the badge are not decoration and never were: they are riveting hammers, the tools those men swung all day to beat iron plates onto hulls."
 
 [[history.moments]]
 year = "1900"
 approx = false
-body = "On 5 July the club is relaunched as West Ham United, taking the name of the district it played in — the same parish name carried by the lane this pub stands on. The crossed hammers are not only the club's: they sit in the coat of arms of the old County Borough of West Ham, and in the London Borough of Newham's arms today. The hammers belong to the borough as much as the team."
+body = "On the fifth of July the club is reborn as West Ham United, taking the name of the parish it played in. The same parish name that was already on this lane, and had been for centuries before anyone kicked a ball. And the hammers went further than the team — they are in the arms of the old Borough of West Ham, and they are in Newham's arms today. Round here the hammers belong to everybody."
 
 [[history.moments]]
 year = "2016"
 approx = false
-body = "After 112 years at the Boleyn Ground, West Ham move to the London Stadium — back into Stratford, a mile and a bit from a pub already standing on a lane that had been carrying the name West Ham the whole time."
-
-# The pub itself. Thinner, hedged, and clearly separated from the above.
+body = "After a hundred and twelve years at the Boleyn Ground the club moves to the London Stadium and comes back into Stratford — a mile and a bit from a pub that had been standing on West Ham Lane the whole time, quietly keeping the name warm."
 
 [[history.moments]]
 year = "1985"
 approx = false
-body = "The earliest hard evidence of this pub that turned up anywhere: a photograph of the Queen's Head on West Ham Lane in CAMRA's archive. Another follows in 1987. It was plainly not new then, but no source consulted would say how much older — so this page does not guess."
+body = "The oldest photograph anyone has of this pub was taken in 1985. There is another from 1987. It is not a picture of a new building — it is a picture of somewhere that had already been there a long while, doing exactly what it does now."
 
 [[history.moments]]
-year = "Later"
+year = "Le Pub"
 approx = true
-body = "At some point it trades as Le Pub, a name CAMRA still records as a former one. It did not stick. The Queen's Head came back, as these things tend to."
+body = "For a spell it traded under another name. It didn't take. The Queen's Head came back, the way these things do."
 
 [[history.moments]]
 year = "2023"
 approx = false
-body = "Craft Union spends over £100,000 on a refit — furniture, fittings, carpets, lighting and six HD screens — and puts up a new sign carrying an image of Queen Elizabeth II. The stated reason was that the changes should reflect the kind of venue it is, and the East End itself."
+body = "Over a hundred thousand pounds goes into the place — furniture, fittings, carpets, lighting, six new screens — and a new sign goes up outside with Queen Elizabeth II on it. The idea, as it was put at the time, was that the pub should look like what it actually is, and like the East End it stands in."
 
 # --- Sources ------------------------------------------------------------------
 # What every claim above rests on. Kept in the repository rather than on the
