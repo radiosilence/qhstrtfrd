@@ -26,7 +26,7 @@ name = "The Queen's Head"
 short_name = "Queen's Head Stratford"
 initials = "QH"
 tagline = "On West Ham Lane, where it should be."
-summary = "The Queen's Head, Stratford E15. A traditional pub on West Ham Lane — Guinness, every match on six HD screens, darts in the back, and a walk to the London Stadium."
+summary = "The Queen's Head, Stratford E15. A proper local on West Ham Lane — Guinness, every match on six screens, step-free, and everybody welcome. A walk from the London Stadium."
 street = "5 West Ham Lane"
 street_alt = "On the corner of Tramway Avenue"
 locality = "Stratford"
@@ -48,9 +48,9 @@ origin = "https://queensheadstratford.london"
 [about]
 heading = "The local on West Ham Lane"
 body = [
-  "A U-shaped room with the bar down the middle and a chequerboard skirt along the counter. Booths against the wall, armchairs that have held up, and six screens placed so that wherever you end up sitting, you can see the match.",
-  "It is a traditional pub and it does not pretend to be anything else. There is no kitchen and there is no cask. What there is, is Guinness given the time it needs, every game that matters, and a room that has never much cared who you are as long as you are decent to the person next to you.",
-  "In 2023 Craft Union put over £100,000 into the place — furniture, fittings, carpets, lighting and the six HD screens — and gave it a new sign with Queen Elizabeth II on it. The room it reopened into is the one described above, and the reason for the refit was stated plainly at the time: the changes reflect the kind of venue this is, and the East End itself."
+  "A U-shaped room with the bar down the middle and a chequerboard skirt along the counter. Booths against the wall, armchairs that have held up, and six screens put where you can actually see them.",
+  "No kitchen, no cask. What there is: Guinness poured properly, every game that matters, and a room that doesn't much mind who you are.",
+  "It was refitted in 2023 — new furniture, carpets, lighting, the screens, and a new sign with the Queen on it."
 ]
 
 # West Ham. Sourced: Stonegate's own announcement says the pub shows West Ham
@@ -62,12 +62,12 @@ body = [
 [welcome]
 heading = "Everybody's local"
 lede = "A room that has never much minded who you are."
-body = "In the course of a week this place is an Irish pub, a sports bar, a salsa floor, an 80s night, a singalong, a drag night and somebody's nan's birthday in the corner booth. The regulars have been coming for decades and nobody stares at anyone who hasn't. Dogs are welcome. Kids are welcome while the sun is up. Come in on your own and you will not be on your own for long, which is the entire job of a local and the thing this one is genuinely good at."
+body = "In one week this place is an Irish pub, a sports bar, a salsa floor, an 80s night, a drag night and somebody's nan's birthday in the corner booth. Some of the regulars have been coming for thirty years. Nobody stares at anyone who hasn't. Dogs welcome, kids welcome while it's light."
 
 [matchday]
 heading = "Claret and blue, before and after"
-lede = "West Ham on the screens, and the London Stadium a walk away through the park."
-body = "Doors open at eleven, every day of the week. On a home Saturday that is a long time before kick-off, which is exactly the point — the day gets talked into shape over the early game, then the whole room walks up together. Come back after. It is open until eleven and nobody is in a hurry."
+lede = "West Ham on the screens, and the ground a walk through the park."
+body = "Doors at eleven, every day. On a home Saturday that's hours before kick-off, which is the idea: early game on, room filling, then everyone walks up together. Come back after — it's open till eleven."
 walk_label = "1.7 km to the London Stadium"
 walk_detail = "About 25 minutes on foot, by TfL's reckoning, through Queen Elizabeth Olympic Park."
 
@@ -117,37 +117,37 @@ close = "22:00"
 
 [bar]
 heading = "Behind the bar"
-note = "Keg and tap, no cask. Said plainly so nobody has to ask twice. The lagers rotate; the Guinness does not."
+note = "Keg and tap, no cask. The lagers rotate. The Guinness doesn't."
 
 [[bar.taps]]
 name = "Guinness"
 style = "Irish stout"
-note = "Poured in two parts and left to settle. The thing a lot of people come in for."
+note = "Two-part pour, left to settle. What a lot of people come in for."
 
 [[bar.taps]]
 name = "Camden Hells"
 style = "Helles lager"
-note = "Brewed in Enfield, which is about as local as a lager gets round here."
+note = "Brewed in Enfield. About as local as lager gets round here."
 
 [[bar.taps]]
 name = "Beavertown Neck Oil"
 style = "Session IPA"
-note = "Brewed in Tottenham. Added when the pub reopened after the refit."
+note = "Brewed in Tottenham. In since the refit."
 
 [[bar.taps]]
 name = "Birra Moretti & Amstel"
 style = "Lager"
-note = "Both came in with the 2023 refurbishment and both have stayed."
+note = "Both arrived with the refit and both stayed."
 
 [[bar.taps]]
 name = "Peroni & Foster's"
 style = "Lager"
-note = "The two that need no introduction and get ordered anyway."
+note = "Need no introduction. Get ordered anyway."
 
 [[bar.taps]]
 name = "Strongbow"
 style = "Cider"
-note = "Original, extra cold. No further notes required."
+note = "Original, extra cold."
 
 # --- Sport -------------------------------------------------------------------
 # Competitions as listed by the operator; the six screens and the Six Nations
@@ -156,8 +156,8 @@ note = "Original, extra cold. No further notes required."
 
 [sport]
 heading = "Every match, six screens"
-lede = "Sky Sports and TNT Sports on six HD screens, put in when the pub was refitted, with the sound up for the ones that have earned it."
-note = "Big nights fill this place out. Ring ahead if you want to be sure of a seat."
+lede = "Sky Sports and TNT on six screens, with the sound up for the ones that deserve it."
+note = "Big nights fill up. Ring ahead if you want a seat."
 
 competitions = [
   "Premier League",
@@ -180,7 +180,7 @@ competitions = [
 
 [whatson]
 heading = "What the pub puts on"
-lede = "Something is usually on. What and when moves about, so the Facebook page is the honest answer — that is where the pub actually posts."
+lede = "Something's usually on. What and when moves about, so Facebook is the honest answer — that's where the pub posts."
 
 [[regulars]]
 name = "Salsa Thursdays"
@@ -190,7 +190,7 @@ blurb = "The night the floor gets used for something other than standing on."
 [[regulars]]
 name = "Live music"
 when = "Regularly"
-blurb = "An Irish pub with live music, and has been for as long as anyone here can remember."
+blurb = "An Irish pub with live music, and has been for as long as anyone remembers."
 
 [[regulars]]
 name = "80s nights, singalongs & drag"
@@ -200,7 +200,7 @@ blurb = "All three have happened here, and all three will happen again."
 [[regulars]]
 name = "Sport, all day"
 when = "Every day"
-blurb = "Six screens, both subscriptions, and the sound up for the ones that deserve it. There is a board and a table in the back too, free to play, if the football is not on."
+blurb = "Six screens, both subscriptions. Board and table in the back too, free to play."
 
 # --- One-off events -----------------------------------------------------------
 # DELIBERATELY EMPTY.
@@ -227,7 +227,7 @@ blurb = "Six screens, both subscriptions, and the sound up for the ones that des
 
 [functions]
 heading = "Birthdays, wakes and send-offs"
-body = "Birthdays, christenings, leaving dos, and more than one send-off done properly. This is the sort of pub people mark things in. If you want to put something on, ring the bar and ask — that conversation will get you further than any form ever would."
+body = "Birthdays, christenings, leaving dos and a good few send-offs. It's the sort of pub people mark things in. Ring the bar and ask."
 
 # --- Facilities ---------------------------------------------------------------
 # All from the operator's own facilities list, except the two entrances (CAMRA)
@@ -268,19 +268,19 @@ detail = "No kitchen. This is a pub for drinking in."
 
 [travel]
 heading = "Finding us"
-lede = "On the corner where West Ham Lane meets Tramway Avenue, a few minutes off Stratford Broadway."
+lede = "On the corner of West Ham Lane and Tramway Avenue, just off Stratford Broadway."
 
 [[travel.routes]]
 mode = "Stratford station"
-detail = "575 metres — around ten minutes on foot. Central, Jubilee, Elizabeth line, DLR, Overground and National Rail."
+detail = "575m, about ten minutes. Central, Jubilee, Elizabeth line, DLR, Overground and National Rail."
 
 [[travel.routes]]
 mode = "Stratford High Street"
-detail = "DLR, and slightly closer than Stratford itself if you are coming from the south."
+detail = "DLR, and closer than Stratford if you're coming from the south."
 
 [[travel.routes]]
 mode = "London Stadium"
-detail = "1.7 km, about 25 minutes on foot through Queen Elizabeth Olympic Park."
+detail = "1.7km, about 25 minutes through the Olympic Park."
 
 [[travel.routes]]
 mode = "Bus"
@@ -288,7 +288,7 @@ detail = "Stratford Broadway takes the 69, 104, 238, 241, 262, 276 and 473. Stra
 
 [[travel.routes]]
 mode = "Driving"
-detail = "No car park, and you are inside both the ULEZ and the Congestion Charge's eastern approach. The Stratford Centre and Westfield car parks are the nearest."
+detail = "No car park, and you're in the ULEZ. Stratford Centre and Westfield are nearest."
 
 # Confirmed current by the pub, September 2026. This supersedes CAMRA's entry,
 # which still describes the pub as it was before the 2023 refit — steps at the
@@ -296,7 +296,7 @@ detail = "No car park, and you are inside both the ULEZ and the Congestion Charg
 # listing is the older record, not the truer one.
 [access]
 heading = "Step-free, and welcome"
-body = "You can get in without doing battle with a step, and there is an accessible toilet once you are in. Wheelchairs, walking frames, buggies, whatever gets you through the day — come in, and if you want a hand with anything or a table somewhere particular, say so at the bar and it will be sorted. Nobody here thinks that is a favour."
+body = "Step-free entry, and an accessible toilet inside. Wheelchairs, frames, buggies, all fine. If you want a hand or a particular table, say so at the bar and it's sorted."
 
 # --- FAQ ----------------------------------------------------------------------
 # Rendered with FAQPage structured data. Every answer is sourced; none invents
@@ -308,31 +308,31 @@ a = "Yes. Sky Sports and TNT on six screens, league games and European nights al
 
 [[faq]]
 q = "Is it dog friendly?"
-a = "Yes. Dogs are welcome and there is usually one in already."
+a = "Yes, and there's usually one in already."
 
 [[faq]]
 q = "Do you serve food?"
-a = "No — there is no kitchen. There is a great deal of food two minutes away on the Broadway, and nobody minds which of it you eat before you come in."
+a = "No kitchen. There's plenty of food two minutes away on the Broadway, and nobody minds which of it you eat first."
 
 [[faq]]
 q = "Do you have real ale?"
-a = "No cask, no handpumps. This is a keg house — Guinness, lagers and cider, all of it cold."
+a = "No cask, no handpumps. Keg house: Guinness, lagers, cider."
 
 [[faq]]
 q = "How far is the London Stadium?"
-a = "A mile or so — about twenty-five minutes on foot, straight through the Olympic Park."
+a = "About a mile, 25 minutes on foot through the Olympic Park."
 
 [[faq]]
 q = "Is it step-free?"
-a = "Yes. Step-free entry and an accessible toilet inside. If you would like a table kept somewhere particular, ring ahead on 020 8536 1066 and it will be waiting."
+a = "Yes. Step-free entry and an accessible toilet. Ring ahead on 020 8536 1066 if you want a particular table."
 
 [[faq]]
 q = "Can I book it for a party?"
-a = "Ring the bar and ask. They will tell you what is possible far better than a website can."
+a = "Ring the bar and ask. They'll know better than a website."
 
 [[faq]]
 q = "What time do you open?"
-a = "Eleven in the morning, every day. Last orders are at eleven at night Monday to Saturday, and ten on Sunday."
+a = "11am every day. Close at 11pm Monday to Saturday, 10pm Sunday."
 
 # --- History ------------------------------------------------------------------
 # The hard part to get right, so the hedging is deliberate and stays in.
@@ -347,48 +347,48 @@ a = "Eleven in the morning, every day. Last orders are at eleven at night Monday
 
 [history]
 heading = "The lane, and the pub on it"
-lede = "Nobody knows how old this pub is. The lane it stands on is a different matter, and the story attached to the name over the door is one of the best in London."
+lede = "Nobody knows how old this pub is. The lane it stands on is another matter."
 note = "Somebody drinking in here knows more about this place than the internet does. If that's you, the bar would like a word."
 
 [[history.moments]]
 year = "1067"
 approx = false
-body = "The name goes into the written record as Strætforda — the ford on the Roman road. The road came out of Aldgate and ran for Colchester, and somewhere just north of the High Street it met the River Lea and had to get across. Everything here begins with that crossing. The whole place is named after the act of getting to the other side."
+body = "The name enters the written record as Strætforda: the ford on the Roman road. The road came out of Aldgate heading for Colchester, and somewhere north of the High Street it met the Lea and had to get across. The place is named after getting to the other side."
 
 [[history.moments]]
 year = "1135"
 approx = false
-body = "Cistercian monks raise Stratford Langthorne Abbey on the marsh. It grows into one of the richest houses in England — fifteen hundred acres underfoot and twenty manors scattered across Essex. Four hundred years later Henry VIII pulls it down, and the people living round about come and take the stone away by the cartload to build with. It never left. It is still here, in garden walls and foundations, holding up buildings that have no idea what they are made of."
+body = "Cistercian monks raise Stratford Langthorne Abbey on the marsh. It becomes one of the richest houses in England: 1,500 acres here and twenty manors across Essex. Henry VIII pulls it down in 1538, and the neighbours cart the stone away to build with. It never left. It's still here, in garden walls and foundations, holding up buildings that have no idea what they're made of."
 
 [[history.moments]]
 year = "1839"
 approx = false
-body = "On the twentieth of June a station opens on the Eastern Counties Railway and the village stops being a village. Within a generation Stratford is a junction, and a junction means thousands of men arriving with a thirst and nowhere yet to take it."
+body = "A station opens on the Eastern Counties Railway and the village stops being one. Within a generation Stratford is a junction, and a junction means thousands of men arriving with a thirst."
 
 [[history.moments]]
 year = "1847"
 approx = false
-body = "The locomotive works open just up the road. Before they close in 1991 they turn out one thousand six hundred and eighty-two engines, five and a half thousand carriages and thirty-three thousand wagons, and at their height two and a half thousand people walk through the gates. For a century and a half this is a place that makes enormous things out of iron, and goes for a pint afterwards."
+body = "The locomotive works open just up the road. Before closing in 1991 they turn out 1,682 engines, 5,500 carriages and 33,000 wagons, with 2,500 people through the gates at their height. For 150 years this is a place that makes enormous things out of iron, then goes for a pint."
 
 [[history.moments]]
 year = "1895"
 approx = false
-body = "Downriver at Thames Ironworks — the last great shipbuilder left on the Thames — a foreman called Dave Taylor and the owner, Arnold Hills, get a works team together. They call it Thames Ironworks FC. The hammers that end up crossed on the badge are not decoration and never were: they are riveting hammers, the tools those men swung all day to beat iron plates onto hulls."
+body = "Downriver at Thames Ironworks, the last great shipbuilder on the Thames, a foreman called Dave Taylor and the owner Arnold Hills get a works team together. Thames Ironworks FC. The hammers that end up crossed on the badge are riveting hammers — the tools those men swung all day to beat iron plates onto hulls."
 
 [[history.moments]]
 year = "1900"
 approx = false
-body = "On the fifth of July the club is reborn as West Ham United, taking the name of the parish it played in. The same parish name that was already on this lane, and had been for centuries before anyone kicked a ball. And the hammers went further than the team — they are in the arms of the old Borough of West Ham, and they are in Newham's arms today. Round here the hammers belong to everybody."
+body = "The club is reborn as West Ham United, taking the name of the parish it played in. The same name already on this lane, and on it for centuries before anyone kicked a ball. The hammers went further than the team: they're in the old Borough of West Ham's arms, and in Newham's today. Round here they belong to everybody."
 
 [[history.moments]]
 year = "2016"
 approx = false
-body = "After a hundred and twelve years at the Boleyn Ground the club moves to the London Stadium and comes back into Stratford — a mile and a bit from a pub that had been standing on West Ham Lane the whole time, quietly keeping the name warm."
+body = "After 112 years at the Boleyn Ground the club moves to the London Stadium and comes back into Stratford, a mile from a pub that had been standing on West Ham Lane the whole time."
 
 [[history.moments]]
 year = "1985"
 approx = false
-body = "The oldest photograph anyone has of this pub was taken in 1985. There is another from 1987. It is not a picture of a new building — it is a picture of somewhere that had already been there a long while, doing exactly what it does now."
+body = "The oldest photograph anyone has of this pub was taken in 1985. There's another from 1987. It is not a picture of a new building."
 
 [[history.moments]]
 year = "Le Pub"
@@ -398,7 +398,7 @@ body = "For a spell it traded under another name. It didn't take. The Queen's He
 [[history.moments]]
 year = "2023"
 approx = false
-body = "Over a hundred thousand pounds goes into the place — furniture, fittings, carpets, lighting, six new screens — and a new sign goes up outside with Queen Elizabeth II on it. The idea, as it was put at the time, was that the pub should look like what it actually is, and like the East End it stands in."
+body = "Over £100,000 goes into the place: furniture, fittings, carpets, lighting, six new screens, and a new sign outside with Queen Elizabeth II on it. The idea, as it was put then, was that the pub should look like what it is."
 
 # --- Sources ------------------------------------------------------------------
 # What every claim above rests on. Kept in the repository rather than on the
