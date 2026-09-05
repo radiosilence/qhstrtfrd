@@ -153,8 +153,7 @@
 
   /* --- Type ------------------------------------------------------------ */
 
-  /* The label above a heading. Small, brass, spaced out — it does most of the
-     work of making a section feel considered. */
+  /* The label above a heading. */
   .eyebrow {
     font-family: var(--font-sans);
     font-size: 0.72rem;
@@ -175,19 +174,6 @@
     background: linear-gradient(to right, var(--color-brass), transparent);
     opacity: 0.45;
     max-width: 7rem;
-  }
-
-  .eyebrow-center {
-    justify-content: center;
-  }
-
-  .eyebrow-center::after,
-  .eyebrow-center::before {
-    content: "";
-    flex: 0 0 3.5rem;
-    height: 1px;
-    background: var(--color-brass);
-    opacity: 0.45;
   }
 
   .display {
@@ -220,8 +206,7 @@
     margin-top: 1.4rem;
   }
 
-  /* First line of the first paragraph, in small caps — an editorial touch that
-     costs nothing and reads as considered. */
+  /* First line of the first paragraph in small caps. */
   .prose-warm > p:first-of-type::first-line {
     font-variant-caps: all-small-caps;
     letter-spacing: 0.06em;
@@ -452,7 +437,7 @@
       var(--color-ink) 70%
     );
     border: 1px solid var(--color-hairline);
-    transition: border-color 0.25s, transform 0.25s;
+    transition: border-color 0.25s;
   }
 
   .card:hover {
@@ -670,8 +655,7 @@
     object-fit: cover;
   }
 
-  /* A brass frame offset behind the image. Pure decoration, and the reason the
-     photographs stop looking like stock. */
+  /* A brass frame offset behind the image. */
   .figure-framed {
     position: relative;
   }
@@ -775,10 +759,6 @@
 
   /* --- Utility --------------------------------------------------------- */
 
-  .stack > * + * {
-    margin-top: 1.5rem;
-  }
-
   .skip {
     position: absolute;
     left: -9999px;
@@ -871,25 +851,11 @@
   }
 
   /* --- Duotone --------------------------------------------------------- */
-  /* The three photographs are stock and read as stock. Pushing them through a
-     claret/brass duotone makes them a set rather than three borrowed images,
-     and it costs one SVG filter and no extra bytes over the wire.
-
-     The filter itself lives in `ornament.html`; these classes apply it. */
+  /* The filter lives in `ornament.html`, and is what makes three stock
+     photographs read as a set. */
 
   .duo {
     filter: url(#duotone-claret);
-  }
-
-  .duo-soft {
-    filter: url(#duotone-claret);
-    opacity: 0.85;
-  }
-
-  /* A photograph that fades into the page rather than ending at an edge. */
-  .fade-bottom {
-    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
   }
 
   /* --- Ornament -------------------------------------------------------- */
@@ -962,7 +928,6 @@
   }
 
   /* --- Numbers --------------------------------------------------------- */
-  /* Facts with figures, which is what a lot of this site now is. */
 
   .figures {
     display: grid;
@@ -1063,10 +1028,7 @@
 }
 
 @layer components {
-  /* The plain facts, directly under the hero.
-     Guillemets rather than bullets, after the Southampton Arms — whose whole
-     homepage is its address and "we close around 11 or 12", and which is one of
-     the best-loved pubs in London. Practical beats poetic above the fold. */
+  /* The plain facts, directly under the hero. */
 
   .plain-band {
     padding-block: clamp(1.75rem, 4vw, 2.75rem);
