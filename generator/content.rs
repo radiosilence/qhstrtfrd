@@ -57,11 +57,9 @@ pub struct Disclaimer {
 pub struct Venue {
     pub name: String,
     pub short_name: String,
-    pub initials: String,
     pub tagline: String,
     pub summary: String,
     pub street: String,
-    pub street_alt: String,
     pub locality: String,
     pub city: String,
     pub region: String,
@@ -77,14 +75,6 @@ pub struct Venue {
 }
 
 impl Venue {
-    /// One line, for the footer and the `address` microdata.
-    pub fn address_line(&self) -> String {
-        format!(
-            "{}, {}, {} {}",
-            self.street, self.locality, self.city, self.postcode
-        )
-    }
-
     /// Google Maps takes a query string; a postcode plus the street is more
     /// reliable than coordinates, which drop a pin in the middle of the road.
     pub fn maps_url(&self) -> String {
@@ -100,11 +90,6 @@ impl Venue {
 }
 
 /// Three flat statements, directly under the hero and above any prose.
-///
-/// The survey of 44 pub sites is unambiguous about this: the ones people love
-/// lead with where they are and when they open, not with atmosphere. The
-/// Southampton Arms says "we are open from midday everyday. We close around 11
-/// or 12" and stops. This is that.
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Plain {
@@ -120,8 +105,7 @@ pub struct About {
     pub body: Vec<String>,
 }
 
-/// Who the pub is for. Its own block because it is a claim about the room
-/// rather than about the sport or the drink, and it earns the space.
+/// Who the pub is for.
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Welcome {
@@ -136,7 +120,6 @@ pub struct Matchday {
     pub heading: String,
     pub lede: String,
     pub body: String,
-    pub walk_label: String,
     pub walk_detail: String,
 }
 
@@ -149,11 +132,6 @@ pub struct Hours {
 }
 
 impl Hours {
-    /// Schema.org wants `Mo`, `Tu`, … — derived so the two cannot disagree.
-    pub fn schema_day(&self) -> &str {
-        &self.day[..2]
-    }
-
     /// `11:00` → `11am`, `23:00` → `11pm`. Pub hours are never on the half hour
     /// here, but the minutes are kept when they are not zero.
     pub fn open_display(&self) -> String {
@@ -264,12 +242,10 @@ pub struct Moment {
 /// Where a claim on this site came from.
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
+#[allow(dead_code)]
 pub struct Source {
-    #[allow(dead_code)]
     pub name: String,
-    #[allow(dead_code)]
     pub url: String,
-    #[allow(dead_code)]
     pub covers: String,
 }
 

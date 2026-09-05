@@ -16,8 +16,7 @@ what the place actually is and that a search engine can read properly.
 
 - [Task](https://taskfile.dev) orchestrates; steps declare `sources`/`generates`
   so nothing re-runs without cause
-- [Askama](https://askama.rs) renders `src/templates/*.html`, bound to a struct at
-  compile time — a field a template names but the struct lacks fails `cargo build`
+- [Askama](https://askama.rs) renders `src/templates/*.html`
 - Content is one TOML file parsed through serde with `deny_unknown_fields`
 - [TailwindCSS](https://tailwindcss.com) v4, with Fraunces and Instrument Sans as
   variable woff2 (95KB for both, latin subset)

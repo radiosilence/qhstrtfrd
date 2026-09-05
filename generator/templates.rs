@@ -60,7 +60,7 @@ macro_rules! page {
     };
 }
 
-page!(Index, "index.html", upcoming: &'a [Upcoming<'a>]);
+page!(Index, "index.html");
 page!(WhatsOn, "whats-on.html", upcoming: &'a [Upcoming<'a>]);
 page!(Sport, "sport.html");
 page!(FindUs, "find-us.html");

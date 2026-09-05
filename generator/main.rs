@@ -7,7 +7,7 @@ use std::path::{Path, PathBuf};
 
 use anyhow::{Context as _, Result};
 use askama::Template;
-use time::{Date, OffsetDateTime, UtcOffset};
+use time::{Date, OffsetDateTime};
 
 use queenshead::assets::Assets;
 use queenshead::content::Site;
@@ -40,10 +40,9 @@ fn main() -> Result<()> {
     // that is known here and nowhere else.
     assets.derive("sitemap.xml", sitemap(&site.venue.origin).into_bytes());
 
-    // London is UTC+1 for most of the drinking year, but the only thing `today`
-    // decides is whether an event has passed — an hour either side of midnight
-    // cannot change that by more than a day, and the nightly rebuild fixes it.
-    let today: Date = OffsetDateTime::now_utc().to_offset(UtcOffset::UTC).date();
+    // UTC, not London: `today` only decides whether an event has passed, and an
+    // hour either side of midnight is corrected by the nightly rebuild.
+    let today: Date = OffsetDateTime::now_utc().date();
     let upcoming = site.upcoming(today)?;
 
     let ctx = Context { assets: &assets };
@@ -70,7 +69,6 @@ fn main() -> Result<()> {
                 site: &site,
                 meta,
                 nav: &nav,
-                upcoming: &upcoming,
             }
             .render()?,
             "whats-on" => WhatsOn {
@@ -156,25 +154,25 @@ fn meta_for(site: &Site, slug: &str, path: &str, assets: &Assets) -> Meta {
 
     let (title, heading, description, image_alt) = match slug {
         "whats-on" => (
-            format!("What's On — {} , {}", v.name, v.locality),
+            format!("What's On — {}, {}", v.name, v.locality),
             "What's On".to_owned(),
             format!(
-                "Live music, salsa Thursdays, darts and pool at {} on West Ham Lane, Stratford E15. Free entry, no guest list.",
+                "Live music, salsa Thursdays, darts and pool at {} on West Ham Lane, Stratford E15.",
                 v.name
             ),
             "Live music at the Queen's Head, Stratford".to_owned(),
         ),
         "sport" => (
-            format!("Sport — {} , {}", v.name, v.locality),
+            format!("Sport — {}, {}", v.name, v.locality),
             "Sport".to_owned(),
             format!(
-                "Sky Sports and TNT Sports on HD screens at {}, Stratford E15 — Premier League, Champions League, rugby, racing and boxing, fifteen minutes from the London Stadium.",
+                "Sky Sports and TNT Sports on HD screens at {}, Stratford E15 — Premier League, Champions League, rugby, racing and boxing, a walk from the London Stadium.",
                 v.name
             ),
             "A full room watching the football at the Queen's Head, Stratford".to_owned(),
         ),
         "history" => (
-            format!("History — {} , West Ham Lane, {}", v.name, v.locality),
+            format!("History — {}, West Ham Lane, {}", v.name, v.locality),
             "Older than the skyline".to_owned(),
             format!(
                 "Photographed on West Ham Lane in 1985, briefly traded as Le Pub, refitted in 2023. What can actually be shown about the history of {}, Stratford E15.",
@@ -183,7 +181,7 @@ fn meta_for(site: &Site, slug: &str, path: &str, assets: &Assets) -> Meta {
             "The bar at the Queen's Head, Stratford".to_owned(),
         ),
         "faq" => (
-            format!("FAQ — {} , {} {}", v.name, v.locality, v.postcode),
+            format!("FAQ — {}, {} {}", v.name, v.locality, v.postcode),
             "Straight answers".to_owned(),
             format!(
                 "Do they show West Ham? Is it dog friendly? Is there food? Straight answers about {}, {} {} — including the ones where the answer is no.",
@@ -192,11 +190,11 @@ fn meta_for(site: &Site, slug: &str, path: &str, assets: &Assets) -> Meta {
             "Pump clips along the bar at the Queen's Head".to_owned(),
         ),
         "find-us" => (
-            format!("Find Us — {} , {} {}", v.name, v.locality, v.postcode),
+            format!("Find Us — {}, {} {}", v.name, v.locality, v.postcode),
             "Find Us".to_owned(),
             format!(
-                "{}, {}, {} {}. Four minutes from Stratford station, fifteen from the London Stadium. Open {} today.",
-                v.street, v.locality, v.city, v.postcode, "from 11am"
+                "{}, {}, {} {}. Ten minutes from Stratford station, 25 from the London Stadium. Open from 11am every day.",
+                v.street, v.locality, v.city, v.postcode
             ),
             "The bar at the Queen's Head, Stratford".to_owned(),
         ),

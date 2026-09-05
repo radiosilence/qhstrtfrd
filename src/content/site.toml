@@ -24,11 +24,9 @@ official_url = "https://www.craftunionpubs.com/queens-head-stratford"
 [venue]
 name = "The Queen's Head"
 short_name = "Queen's Head Stratford"
-initials = "QH"
 tagline = "A West Ham Lane local since before the skyline. Six screens, proper Guinness, everybody welcome."
 summary = "The Queen's Head, Stratford E15. A proper local on West Ham Lane — Guinness, every match on six screens, step-free, and everybody welcome. A walk from the London Stadium."
 street = "5 West Ham Lane"
-street_alt = "On the corner of Tramway Avenue"
 locality = "Stratford"
 city = "London"
 region = "Greater London"
@@ -42,22 +40,15 @@ facebook = "https://www.facebook.com/stratfordqueenshead/"
 instagram = "https://www.instagram.com/queenshead.stratford/"
 origin = "https://queensheadstratford.london"
 
-# The room. Every concrete detail is sourced: the island bar and the
-# chequerboard skirt from a visitor's description, the refit from Stonegate's
-# own announcement.
-#
-# That visitor called it "a U shaped venue", which is accurate and was the
-# opening line here for a while. It reads as a survey entry because that is
-# what it was — the right observation in the wrong register for a pub's own
-# front page.
-# The blunt facts, stated the way a pub states them. Sits directly under the
-# hero, above any prose. Modelled on the Southampton Arms, whose entire homepage
-# is its address, its hours and one useful sentence — and which is beloved.
+# The blunt facts, directly under the hero and above any prose, after the
+# Southampton Arms: its whole homepage is an address and its hours.
 [plain]
 line1 = "Open 11am every day. Close 11pm, 10pm Sundays."
 line2 = "5 West Ham Lane, Stratford E15 4PH. Two minutes off the Broadway."
 line3 = "Step-free, dogs welcome, no kitchen. Cash and card."
 
+# The island bar and the chequerboard skirt are a visitor's description; the
+# refit is Stonegate's own announcement.
 [about]
 heading = "The local on West Ham Lane"
 body = [
@@ -65,8 +56,6 @@ body = [
   "No kitchen, no cask. Guinness poured properly, every game that matters, and a refit in 2023 that gave the place new carpets, new lighting and a new sign with the Queen on it."
 ]
 
-# West Ham. Sourced: Stonegate's own announcement says the pub shows West Ham
-# matches. The walk is measured by TfL, not guessed.
 # Who drinks here. Every strand of this is drawn from what the pub actually
 # puts on — an Irish pub with live music and salsa, 80s nights, singalongs and
 # a drag night, dogs welcome, sport on all day. That is a broad church by any
@@ -76,11 +65,12 @@ heading = "Everybody's local"
 lede = "A room that has never much minded who you are."
 body = "In one week this place is an Irish pub, a sports bar, a salsa floor, an 80s night, a drag night and somebody's nan's birthday in the corner booth. Some of the regulars have thirty years on you. Nobody minds."
 
+# Stonegate's announcement says the pub shows West Ham; the walk is TfL's
+# measurement.
 [matchday]
 heading = "Claret and blue, before and after"
 lede = "West Ham on the screens, and the ground a walk through the park."
 body = "Doors at eleven, every day. On a home Saturday that's hours before kick-off, which is the idea: early game on, room filling, then everyone walks up together. Come back after — it's open till eleven."
-walk_label = "1.7 km to the London Stadium"
 walk_detail = "About 25 minutes on foot, by TfL's reckoning, through Queen Elizabeth Olympic Park."
 
 # --- Hours -------------------------------------------------------------------
@@ -192,7 +182,7 @@ competitions = [
 
 [whatson]
 heading = "What the pub puts on"
-lede = "Something's usually on. What and when moves about, so Facebook is the honest answer — that's where the pub posts."
+lede = "What and when moves about. Facebook is where the pub posts it."
 
 [[regulars]]
 name = "Salsa Thursdays"
@@ -324,7 +314,7 @@ a = "Yes, and there's usually one in already."
 
 [[faq]]
 q = "Do you serve food?"
-a = "No kitchen. There's plenty of food two minutes away on the Broadway, and nobody minds which of it you eat first."
+a = "No kitchen. The Broadway is two minutes away and has plenty."
 
 [[faq]]
 q = "Do you have real ale?"
@@ -370,7 +360,7 @@ body = "The name enters the written record as Strætforda: the ford on the Roman
 [[history.moments]]
 year = "1135"
 approx = false
-body = "Cistercian monks raise Stratford Langthorne Abbey on the marsh. It becomes one of the richest houses in England: 1,500 acres here and twenty manors across Essex. Henry VIII pulls it down in 1538, and the neighbours cart the stone away to build with. It never left. It's still here, in garden walls and foundations, holding up buildings that have no idea what they're made of."
+body = "Cistercian monks raise Stratford Langthorne Abbey on the marsh. It becomes one of the richest houses in England: 1,500 acres here and twenty manors across Essex. Henry VIII pulls it down in 1538."
 
 [[history.moments]]
 year = "1839"
